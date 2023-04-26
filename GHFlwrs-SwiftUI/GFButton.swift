@@ -17,9 +17,9 @@ import SwiftUI
 /// + internal vertical padding
 struct GFButton<Label>: View where Label: View {
 
-    var label: () -> Label
     var action: () -> Void
     var color: Color
+    var label: () -> Label
 
     var body: some View {
         Button(action: self.action, label: self.label)

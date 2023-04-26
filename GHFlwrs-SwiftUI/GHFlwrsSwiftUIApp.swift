@@ -15,7 +15,6 @@ struct GHFlwrsSwiftUIApp: App {
         appearance.configureWithOpaqueBackground()
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
-//        UITabBar.appearance().tintColor = .green
     }
 
     var body: some Scene {

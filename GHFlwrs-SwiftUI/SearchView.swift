@@ -9,7 +9,11 @@ import SwiftUI
 
 struct SearchView: View {
 
+    @FocusState var searchFieldIsFocused: Bool
+
     @State private var usernameToSearch = ""
+
+    @State private var pushFollowersList = false
 
     var body: some View {
 
@@ -28,19 +32,39 @@ struct SearchView: View {
                 VStack {
                     GFSearchField(searchPhrase: $usernameToSearch)
                         .padding(.horizontal, 50)
+                        .focused($searchFieldIsFocused)
+                        .onSubmit(pushFollowersListIfValid)
 
                     Spacer()
 
-                    GFButton(label: {
+                    GFButton(action: pushFollowersListIfValid, color: .green) {
                         Text("Get Followers")
-                    }, action: {
-                        // search code here
-                    }, color: .green)
+                    }
                     .padding(.horizontal, 50)
                 }
                 .padding(.vertical, 48)
             }
+            .ignoresSafeArea(.keyboard)
+            .navigationDestination(isPresented: $pushFollowersList) {
+                FollowersListView(username: usernameToSearch)
+            }
         }
+        .onTapGesture {
+            if searchFieldIsFocused {
+                searchFieldIsFocused = false
+            }
+        }
+    }
+
+    var isUsernameEntered: Bool {
+        !usernameToSearch
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .isEmpty
+    }
+
+    private func pushFollowersListIfValid() {
+        guard isUsernameEntered else { return }
+        pushFollowersList = true
     }
 }
 

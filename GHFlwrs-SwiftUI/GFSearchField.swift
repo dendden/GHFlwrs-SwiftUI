@@ -37,6 +37,7 @@ struct GFSearchField: View {
             .tint(.primary)
             .padding(.vertical)
             .frame(maxWidth: .infinity)
+            .submitLabel(.go)
             .background(
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.tertiarySystemBackground)
