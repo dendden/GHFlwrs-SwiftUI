@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct SearchView: View {
+
+    @State private var usernameToSearch = ""
+
     var body: some View {
         NavigationStack {
-            Color.cyan
-                .navigationTitle("Search")
+            ZStack {
+                Color.clear
+                    .navigationTitle("Search")
+                VStack {
+                    GFSearchField(searchPhrase: $usernameToSearch)
+                    GFButton(label: {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }, action: {
+                        // search code here
+                    }, color: .green)
+                }
+            }
         }
     }
 }
