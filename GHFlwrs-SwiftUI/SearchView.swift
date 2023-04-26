@@ -13,6 +13,8 @@ struct SearchView: View {
 
     @State private var usernameToSearch = ""
 
+    @State private var showUsernameAlert = false
+
     @State private var pushFollowersList = false
 
     var body: some View {
@@ -37,10 +39,8 @@ struct SearchView: View {
 
                     Spacer()
 
-                    GFButton(action: pushFollowersListIfValid, color: .green) {
-                        Text("Get Followers")
-                    }
-                    .padding(.horizontal, 50)
+                    GFButton(action: pushFollowersListIfValid, color: .green, label: "Get Followers")
+                        .padding(.horizontal, 50)
                 }
                 .padding(.vertical, 48)
             }
@@ -54,6 +54,13 @@ struct SearchView: View {
                 searchFieldIsFocused = false
             }
         }
+        .fullScreenCover(isPresented: $showUsernameAlert) {
+            GFAlertView(
+                alertTitle: "Username No-No",
+                alertMessage: "Looks like you forgot to input anything except emptiness in that search field 🥺."
+            )
+            .background(ClearBackgroundView())
+        }
     }
 
     var isUsernameEntered: Bool {
@@ -63,7 +70,10 @@ struct SearchView: View {
     }
 
     private func pushFollowersListIfValid() {
-        guard isUsernameEntered else { return }
+        guard isUsernameEntered else {
+            showUsernameAlert = true
+            return
+        }
         pushFollowersList = true
     }
 }

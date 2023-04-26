@@ -17,6 +17,9 @@
 		08F3586229F934710058845D /* Color-SystemColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3586129F934710058845D /* Color-SystemColors.swift */; };
 		08F3586429F93B850058845D /* GFSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3586329F93B850058845D /* GFSearchField.swift */; };
 		08F3586829F982120058845D /* FollowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3586729F982120058845D /* FollowersListView.swift */; };
+		08F3587029F996B80058845D /* GFTextLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3586F29F996B80058845D /* GFTextLabels.swift */; };
+		08F3587429F9AE9F0058845D /* GFAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3587329F9AE9F0058845D /* GFAlertView.swift */; };
+		08F3587629F9B75B0058845D /* UIView-ClearBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		08F3586129F934710058845D /* Color-SystemColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-SystemColors.swift"; sourceTree = "<group>"; };
 		08F3586329F93B850058845D /* GFSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSearchField.swift; sourceTree = "<group>"; };
 		08F3586729F982120058845D /* FollowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListView.swift; sourceTree = "<group>"; };
+		08F3586F29F996B80058845D /* GFTextLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextLabels.swift; sourceTree = "<group>"; };
+		08F3587329F9AE9F0058845D /* GFAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertView.swift; sourceTree = "<group>"; };
+		08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-ClearBackground.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +76,10 @@
 				08F3585729F843D60058845D /* FavoritesView.swift */,
 				08F3585D29F92E330058845D /* GFButton.swift */,
 				08F3586329F93B850058845D /* GFSearchField.swift */,
+				08F3587329F9AE9F0058845D /* GFAlertView.swift */,
+				08F3586F29F996B80058845D /* GFTextLabels.swift */,
 				08F3586129F934710058845D /* Color-SystemColors.swift */,
+				08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */,
 				08F3584529F832F60058845D /* Assets.xcassets */,
 				08F3584729F832F60058845D /* Preview Content */,
 			);
@@ -178,12 +187,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08F3587429F9AE9F0058845D /* GFAlertView.swift in Sources */,
 				08F3585829F843D60058845D /* FavoritesView.swift in Sources */,
 				08F3586429F93B850058845D /* GFSearchField.swift in Sources */,
 				08F3584429F832F40058845D /* TabBarView.swift in Sources */,
+				08F3587029F996B80058845D /* GFTextLabels.swift in Sources */,
 				08F3586229F934710058845D /* Color-SystemColors.swift in Sources */,
 				08F3585E29F92E330058845D /* GFButton.swift in Sources */,
 				08F3585429F843340058845D /* SearchView.swift in Sources */,
+				08F3587629F9B75B0058845D /* UIView-ClearBackground.swift in Sources */,
 				08F3586829F982120058845D /* FollowersListView.swift in Sources */,
 				08F3584229F832F40058845D /* GHFlwrsSwiftUIApp.swift in Sources */,
 			);

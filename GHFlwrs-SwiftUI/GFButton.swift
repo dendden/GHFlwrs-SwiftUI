@@ -15,19 +15,26 @@ import SwiftUI
 /// + frame max width set to *.infinity*
 /// + corner radius of 10
 /// + internal vertical padding
-struct GFButton<Label>: View where Label: View {
+struct GFButton: View {
 
     var action: () -> Void
     var color: Color
-    var label: () -> Label
+    var label: String
 
     var body: some View {
-        Button(action: self.action, label: self.label)
-            .foregroundColor(.white)
-            .font(.headline)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical)
-            .background(color)
-            .cornerRadius(10)
+        Button(action: self.action) {
+            HStack {
+                Spacer()
+                Text(label)
+                Spacer()
+            }
+        }
+        .foregroundColor(.white)
+        .font(.headline)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical)
+        .background(color)
+        .cornerRadius(10)
+        .contentShape(RoundedRectangle(cornerRadius: 10))
     }
 }
