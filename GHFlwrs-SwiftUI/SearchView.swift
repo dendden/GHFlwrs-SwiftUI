@@ -12,18 +12,33 @@ struct SearchView: View {
     @State private var usernameToSearch = ""
 
     var body: some View {
+
         NavigationStack {
-            ZStack {
-                Color.clear
-                    .navigationTitle("Search")
+
+            VStack {
+                Image("gh-logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 50)
+                    .padding(.top, 80)
+
+                Spacer()
+
                 VStack {
                     GFSearchField(searchPhrase: $usernameToSearch)
+                        .padding(.horizontal, 50)
+
+                    Spacer()
+
                     GFButton(label: {
-                        Label("Search", systemImage: "magnifyingglass")
+                        Text("Get Followers")
                     }, action: {
                         // search code here
                     }, color: .green)
+                    .padding(.horizontal, 50)
                 }
+                .padding(.vertical, 48)
             }
         }
     }

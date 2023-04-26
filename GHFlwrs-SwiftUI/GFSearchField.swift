@@ -16,8 +16,8 @@ import SwiftUI
 /// + frame max width set to *.infinity*
 /// + background color of `tertiarySystemBackground`
 /// + border color of `systemGray4`, border width of 2
+/// + corner radius of 10
 /// + internal vertical padding
-/// + external horizontal padding
 struct GFSearchField: View {
 
     @Binding var searchPhrase: String
@@ -45,6 +45,5 @@ struct GFSearchField: View {
                 RoundedRectangle(cornerRadius: 10)
                     .strokeBorder(Color.systemGray4, lineWidth: 2)
             )
-            .padding(.horizontal)
     }
 }

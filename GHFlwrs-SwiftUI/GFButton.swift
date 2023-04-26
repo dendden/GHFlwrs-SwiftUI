@@ -15,7 +15,6 @@ import SwiftUI
 /// + frame max width set to *.infinity*
 /// + corner radius of 10
 /// + internal vertical padding
-/// + external horizontal padding
 struct GFButton<Label>: View where Label: View {
 
     var label: () -> Label
@@ -30,6 +29,5 @@ struct GFButton<Label>: View where Label: View {
             .padding(.vertical)
             .background(color)
             .cornerRadius(10)
-            .padding(.horizontal)
     }
 }
