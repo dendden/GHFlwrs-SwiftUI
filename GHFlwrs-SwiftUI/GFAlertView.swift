@@ -15,11 +15,20 @@ struct GFAlertView: View {
     let alertMessage: String
     let buttonTitle: String = "OK"
 
+    @State private var alertContainerOpacity: CGFloat = 0
+    @State private var alertContainerScale: CGFloat = 0.7
+
     var body: some View {
 
         ZStack {
 
             Color.black.opacity(0.7).edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    withAnimation {
+                        alertContainerOpacity = 1
+                        alertContainerScale = 1
+                    }
+                }
 
             VStack {
                 Text(alertTitle)
@@ -35,7 +44,7 @@ struct GFAlertView: View {
 
                 Spacer()
 
-                GFButton(action: dismiss.callAsFunction, color: .pink, label: "OK")
+                GFButton(action: dismissAlert, color: .pink, label: "OK")
                 .padding(.bottom)
                 .padding(.horizontal, 20)
             }
@@ -48,6 +57,16 @@ struct GFAlertView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .strokeBorder(Color.white, lineWidth: 2)
             )
+            .opacity(alertContainerOpacity)
+            .scaleEffect(alertContainerScale)
+        }
+    }
+
+    private func dismissAlert() {
+        withAnimation {
+            alertContainerOpacity = 0
+            alertContainerScale = 0.7
+            dismiss()
         }
     }
 }
