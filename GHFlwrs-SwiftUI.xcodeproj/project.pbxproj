@@ -69,17 +69,10 @@
 		08F3584029F832F40058845D /* GHFlwrs-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				08F3584129F832F40058845D /* GHFlwrsSwiftUIApp.swift */,
-				08F3584329F832F40058845D /* TabBarView.swift */,
-				08F3585329F843340058845D /* SearchView.swift */,
-				08F3586729F982120058845D /* FollowersListView.swift */,
-				08F3585729F843D60058845D /* FavoritesView.swift */,
-				08F3585D29F92E330058845D /* GFButton.swift */,
-				08F3586329F93B850058845D /* GFSearchField.swift */,
-				08F3587329F9AE9F0058845D /* GFAlertView.swift */,
-				08F3586F29F996B80058845D /* GFTextLabels.swift */,
-				08F3586129F934710058845D /* Color-SystemColors.swift */,
-				08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */,
+				08F3589A29FD05E30058845D /* Configuration */,
+				08F3589729FD057D0058845D /* Screens */,
+				08F3589829FD05900058845D /* Custom Views */,
+				08F3589929FD05AB0058845D /* Extensions */,
 				08F3584529F832F60058845D /* Assets.xcassets */,
 				08F3584729F832F60058845D /* Preview Content */,
 			);
@@ -92,6 +85,45 @@
 				08F3584829F832F60058845D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		08F3589729FD057D0058845D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				08F3585329F843340058845D /* SearchView.swift */,
+				08F3586729F982120058845D /* FollowersListView.swift */,
+				08F3585729F843D60058845D /* FavoritesView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		08F3589829FD05900058845D /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				08F3585D29F92E330058845D /* GFButton.swift */,
+				08F3586329F93B850058845D /* GFSearchField.swift */,
+				08F3587329F9AE9F0058845D /* GFAlertView.swift */,
+				08F3586F29F996B80058845D /* GFTextLabels.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		08F3589929FD05AB0058845D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08F3586129F934710058845D /* Color-SystemColors.swift */,
+				08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		08F3589A29FD05E30058845D /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				08F3584129F832F40058845D /* GHFlwrsSwiftUIApp.swift */,
+				08F3584329F832F40058845D /* TabBarView.swift */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
