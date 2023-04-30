@@ -46,7 +46,7 @@ struct SearchView: View {
             }
             .ignoresSafeArea(.keyboard)
             .navigationDestination(isPresented: $pushFollowersList) {
-                FollowersListView(username: usernameToSearch)
+                FollowersListView(username: usernameToSearch, showFollowersListOnStack: $pushFollowersList)
             }
         }
         .onTapGesture {
@@ -57,9 +57,8 @@ struct SearchView: View {
         .fullScreenCover(isPresented: $showUsernameAlert) {
             GFAlertView(
                 alertTitle: "Username No-No",
-                alertMessage: "Looks like you forgot to input anything except emptiness in that search field 🥺."
+                alertMessage: .constant("Looks like you forgot to input anything except emptiness in that search field 🥺.")
             )
-            .background(ClearBackgroundView())
         }
     }
 

@@ -12,7 +12,7 @@ struct GFAlertView: View {
     @Environment(\.dismiss) var dismiss
 
     let alertTitle: String
-    let alertMessage: String
+    @Binding var alertMessage: String
     let buttonTitle: String = "OK"
 
     @State private var alertContainerOpacity: CGFloat = 0
@@ -60,6 +60,7 @@ struct GFAlertView: View {
             .opacity(alertContainerOpacity)
             .scaleEffect(alertContainerScale)
         }
+        .background(ClearBackgroundView())
     }
 
     private func dismissAlert() {
@@ -73,6 +74,6 @@ struct GFAlertView: View {
 
 struct GFAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        GFAlertView(alertTitle: "Oops..", alertMessage: "Something must have gone wrong in there..")
+        GFAlertView(alertTitle: "Oops..", alertMessage: .constant("Something must have gone wrong in there.."))
     }
 }
