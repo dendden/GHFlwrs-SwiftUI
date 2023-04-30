@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08DA076829FE59D90095A194 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076729FE59D90095A194 /* Follower.swift */; };
+		08DA076A29FE59E70095A194 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076929FE59E70095A194 /* User.swift */; };
+		08DA076D29FE5A470095A194 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076C29FE5A470095A194 /* NetworkManager.swift */; };
+		08DA077329FEAE420095A194 /* GFNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA077229FEAE420095A194 /* GFNetworkError.swift */; };
 		08F3584229F832F40058845D /* GHFlwrsSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3584129F832F40058845D /* GHFlwrsSwiftUIApp.swift */; };
 		08F3584429F832F40058845D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3584329F832F40058845D /* TabBarView.swift */; };
 		08F3584629F832F60058845D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08F3584529F832F60058845D /* Assets.xcassets */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08DA076729FE59D90095A194 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		08DA076929FE59E70095A194 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		08DA076C29FE5A470095A194 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		08DA077229FEAE420095A194 /* GFNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFNetworkError.swift; sourceTree = "<group>"; };
 		08F3583E29F832F40058845D /* GHFlwrs-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GHFlwrs-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08F3584129F832F40058845D /* GHFlwrsSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFlwrsSwiftUIApp.swift; sourceTree = "<group>"; };
 		08F3584329F832F40058845D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -50,6 +58,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08DA076629FE59960095A194 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				08DA076729FE59D90095A194 /* Follower.swift */,
+				08DA076929FE59E70095A194 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		08DA076B29FE5A340095A194 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				08DA076C29FE5A470095A194 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		08DA077129FEAE2D0095A194 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				08DA077229FEAE420095A194 /* GFNetworkError.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		08F3583529F832F40058845D = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +102,9 @@
 		08F3584029F832F40058845D /* GHFlwrs-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				08DA077129FEAE2D0095A194 /* Utilities */,
+				08DA076B29FE5A340095A194 /* Managers */,
+				08DA076629FE59960095A194 /* Model */,
 				08F3589A29FD05E30058845D /* Configuration */,
 				08F3589729FD057D0058845D /* Screens */,
 				08F3589829FD05900058845D /* Custom Views */,
@@ -219,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DA076A29FE59E70095A194 /* User.swift in Sources */,
 				08F3587429F9AE9F0058845D /* GFAlertView.swift in Sources */,
 				08F3585829F843D60058845D /* FavoritesView.swift in Sources */,
 				08F3586429F93B850058845D /* GFSearchField.swift in Sources */,
@@ -226,7 +263,10 @@
 				08F3587029F996B80058845D /* GFTextLabels.swift in Sources */,
 				08F3586229F934710058845D /* Color-SystemColors.swift in Sources */,
 				08F3585E29F92E330058845D /* GFButton.swift in Sources */,
+				08DA077329FEAE420095A194 /* GFNetworkError.swift in Sources */,
+				08DA076829FE59D90095A194 /* Follower.swift in Sources */,
 				08F3585429F843340058845D /* SearchView.swift in Sources */,
+				08DA076D29FE5A470095A194 /* NetworkManager.swift in Sources */,
 				08F3587629F9B75B0058845D /* UIView-ClearBackground.swift in Sources */,
 				08F3586829F982120058845D /* FollowersListView.swift in Sources */,
 				08F3584229F832F40058845D /* GHFlwrsSwiftUIApp.swift in Sources */,

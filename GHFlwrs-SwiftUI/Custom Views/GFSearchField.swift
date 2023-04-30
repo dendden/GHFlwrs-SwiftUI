@@ -34,6 +34,7 @@ struct GFSearchField: View {
             .minimumScaleFactor(0.4)
             .multilineTextAlignment(.center)
             .autocorrectionDisabled(true)
+            .textInputAutocapitalization(.never)
             .tint(.primary)
             .padding(.vertical)
             .frame(maxWidth: .infinity)
