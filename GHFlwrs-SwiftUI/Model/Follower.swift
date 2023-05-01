@@ -11,4 +11,9 @@ struct Follower: Codable {
 
     var login: String
     var avatarUrl: String   // will be converted from snake_case by KeyDecodingStrategy
+
+    static let example = Follower(
+        login: "dendden",
+        avatarUrl: "https://avatars.githubusercontent.com/u/13221911?v=4"
+    )
 }

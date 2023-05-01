@@ -11,10 +11,14 @@ struct TabBarView: View {
 
     var body: some View {
         TabView {
-            SearchView()
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
+
+            NavigationStack {
+                SearchView()
+            }
+            .tabItem {
+                Label("Search", systemImage: "magnifyingglass")
+            }
+
             FavoritesView()
                 .tabItem {
                     Label("Favorites", systemImage: "star")

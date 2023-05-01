@@ -11,6 +11,8 @@ struct FollowersListView: View {
 
     let username: String
 
+    let columns = Array(repeating: GridItem(.flexible()), count: 3)
+
     @Binding var showFollowersListOnStack: Bool
 
     @State private var followers: [Follower] = []
@@ -18,8 +20,12 @@ struct FollowersListView: View {
     @State private var networkAlertMessage = "no comprendo"
 
     var body: some View {
-        Text("Found \(followers.count) followers.")
-            .navigationTitle(username)
+        ScrollView(.vertical) {
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(followers, id: \.login) { follower in
+                    FollowerCellView(follower: follower)
+                }
+            }
             .onAppear {
                 NetworkManager.shared.getFollowers(for: username, page: 1) { result in
                     switch result {
@@ -31,11 +37,14 @@ struct FollowersListView: View {
                     }
                 }
             }
-            .fullScreenCover(isPresented: $showNetworkAlert) {
-                showFollowersListOnStack = false
-            } content: {
-                GFAlertView(alertTitle: "Problemo! 🤦🏻", alertMessage: $networkAlertMessage)
-            }
+        }
+        .navigationTitle(username)
+        .navigationBarTitleDisplayMode(.large)
+        .fullScreenCover(isPresented: $showNetworkAlert) {
+            showFollowersListOnStack = false
+        } content: {
+            GFAlertView(alertTitle: "Problemo! 🤦🏻", alertMessage: $networkAlertMessage)
+        }
 
     }
 }

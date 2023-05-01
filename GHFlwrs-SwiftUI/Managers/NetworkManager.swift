@@ -5,7 +5,7 @@
 //  Created by Денис Трясунов on 30.04.2023.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
 
@@ -13,6 +13,8 @@ class NetworkManager {
 
     let baseURL = "https://api.github.com/users/"
     let followersPerPage = 100
+
+    let cache = NSCache<NSString, UIImage>()
 
     // important to have private init(), so that only class itself
     // can instantiate the singleton

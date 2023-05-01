@@ -19,35 +19,32 @@ struct SearchView: View {
 
     var body: some View {
 
-        NavigationStack {
+        VStack {
+            Image("gh-logo")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 50)
+                .padding(.top, 80)
+
+            Spacer()
 
             VStack {
-                Image("gh-logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
+                GFSearchField(searchPhrase: $usernameToSearch)
                     .padding(.horizontal, 50)
-                    .padding(.top, 80)
+                    .focused($searchFieldIsFocused)
+                    .onSubmit(pushFollowersListIfValid)
 
                 Spacer()
 
-                VStack {
-                    GFSearchField(searchPhrase: $usernameToSearch)
-                        .padding(.horizontal, 50)
-                        .focused($searchFieldIsFocused)
-                        .onSubmit(pushFollowersListIfValid)
-
-                    Spacer()
-
-                    GFButton(action: pushFollowersListIfValid, color: .green, label: "Get Followers")
-                        .padding(.horizontal, 50)
-                }
-                .padding(.vertical, 48)
+                GFButton(action: pushFollowersListIfValid, color: .green, label: "Get Followers")
+                    .padding(.horizontal, 50)
             }
-            .ignoresSafeArea(.keyboard)
-            .navigationDestination(isPresented: $pushFollowersList) {
-                FollowersListView(username: usernameToSearch, showFollowersListOnStack: $pushFollowersList)
-            }
+            .padding(.vertical, 48)
+        }
+        .ignoresSafeArea(.keyboard)
+        .navigationDestination(isPresented: $pushFollowersList) {
+            FollowersListView(username: usernameToSearch, showFollowersListOnStack: $pushFollowersList)
         }
         .onTapGesture {
             if searchFieldIsFocused {
@@ -57,7 +54,9 @@ struct SearchView: View {
         .fullScreenCover(isPresented: $showUsernameAlert) {
             GFAlertView(
                 alertTitle: "Username No-No",
-                alertMessage: .constant("Looks like you forgot to input anything except emptiness in that search field 🥺.")
+                alertMessage: .constant(
+                    "Looks like you forgot to input anything except emptiness in that search field 🥺."
+                )
             )
         }
     }
