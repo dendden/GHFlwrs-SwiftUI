@@ -9,41 +9,34 @@ import SwiftUI
 
 struct FollowersListView: View {
 
-    let username: String
+    @StateObject var viewModel: ViewModel
 
     let columns = Array(repeating: GridItem(.flexible()), count: 3)
 
     @Binding var showFollowersListOnStack: Bool
 
-    @State private var followers: [Follower] = []
-    @State private var showNetworkAlert = false
-    @State private var networkAlertMessage = "no comprendo"
+    init(username: String, showOnStack: Binding<Bool>) {
+        self._viewModel = StateObject(wrappedValue: ViewModel(username: username))
+        self._showFollowersListOnStack = showOnStack
+    }
 
     var body: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(followers, id: \.login) { follower in
+                ForEach(viewModel.followers, id: \.login) { follower in
                     FollowerCellView(follower: follower)
-                }
-            }
-            .onAppear {
-                NetworkManager.shared.getFollowers(for: username, page: 1) { result in
-                    switch result {
-                    case .success(let success):
-                        self.followers = success
-                    case .failure(let failure):
-                        self.networkAlertMessage = failure.rawValue
-                        self.showNetworkAlert = true
-                    }
+                        .onAppear {
+                            viewModel.loadMoreFollowers(currentFollower: follower)
+                        }
                 }
             }
         }
-        .navigationTitle(username)
+        .navigationTitle(viewModel.username)
         .navigationBarTitleDisplayMode(.large)
-        .fullScreenCover(isPresented: $showNetworkAlert) {
+        .fullScreenCover(isPresented: $viewModel.showNetworkAlert) {
             showFollowersListOnStack = false
         } content: {
-            GFAlertView(alertTitle: "Problemo! 🤦🏻", alertMessage: $networkAlertMessage)
+            GFAlertView(alertTitle: "Problemo! 🤦🏻", alertMessage: $viewModel.networkAlertMessage)
         }
 
     }
@@ -51,6 +44,6 @@ struct FollowersListView: View {
 
 struct FollowersListView_Previews: PreviewProvider {
     static var previews: some View {
-        FollowersListView(username: "Den", showFollowersListOnStack: .constant(true))
+        FollowersListView(username: "Den", showOnStack: .constant(true))
     }
 }

@@ -44,7 +44,7 @@ struct SearchView: View {
         }
         .ignoresSafeArea(.keyboard)
         .navigationDestination(isPresented: $pushFollowersList) {
-            FollowersListView(username: usernameToSearch, showFollowersListOnStack: $pushFollowersList)
+            FollowersListView(username: usernameToSearch, showOnStack: $pushFollowersList)
         }
         .onTapGesture {
             if searchFieldIsFocused {

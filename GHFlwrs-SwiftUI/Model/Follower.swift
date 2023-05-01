@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Follower: Codable {
+struct Follower: Codable, Equatable {
 
     var login: String
     var avatarUrl: String   // will be converted from snake_case by KeyDecodingStrategy
@@ -16,4 +16,8 @@ struct Follower: Codable {
         login: "dendden",
         avatarUrl: "https://avatars.githubusercontent.com/u/13221911?v=4"
     )
+
+    static func == (lhs: Follower, rhs: Follower) -> Bool {
+        lhs.login == rhs.login
+    }
 }
