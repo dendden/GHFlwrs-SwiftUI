@@ -35,11 +35,15 @@ extension FollowersListView {
                     if success.count < NetworkManager.shared.followersPerPage {
                         self.hasMoreFollowersToLoad = false
                     }
-                    self.followers.append(contentsOf: success)
-                    self.lastLoadedFollower = self.followers.last
+                    DispatchQueue.main.async {
+                        self.followers.append(contentsOf: success)
+                        self.lastLoadedFollower = self.followers.last
+                    }
                 case .failure(let failure):
-                    self.networkAlertMessage = failure.rawValue
-                    self.showNetworkAlert = true
+                    DispatchQueue.main.async {
+                        self.networkAlertMessage = failure.rawValue
+                        self.showNetworkAlert = true
+                    }
                 }
             }
         }
