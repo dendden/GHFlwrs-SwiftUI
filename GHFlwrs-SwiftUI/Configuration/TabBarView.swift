@@ -9,20 +9,37 @@ import SwiftUI
 
 struct TabBarView: View {
 
+    @State private var returnToSearchHome = false
+    @State private var selectedTab = 1
+
+    var tabSelectionHandler: Binding<Int> {
+        Binding(
+            get: { selectedTab },
+            set: {
+                if $0 == selectedTab {
+                    returnToSearchHome = true
+                }
+                self.selectedTab = $0
+            }
+        )
+    }
+
     var body: some View {
-        TabView {
+        TabView(selection: tabSelectionHandler) {
 
             NavigationStack {
-                SearchView()
+                SearchView(returnToSearchHome: $returnToSearchHome)
             }
             .tabItem {
                 Label("Search", systemImage: "magnifyingglass")
             }
+            .tag(1)
 
             FavoritesView()
                 .tabItem {
                     Label("Favorites", systemImage: "star")
                 }
+                .tag(2)
         }
         .tint(.green)
     }

@@ -11,6 +11,8 @@ struct SearchView: View {
 
     @FocusState var searchFieldIsFocused: Bool
 
+    @Binding var returnToSearchHome: Bool
+
     @State private var usernameToSearch = ""
 
     @State private var showUsernameAlert = false
@@ -51,6 +53,12 @@ struct SearchView: View {
                 searchFieldIsFocused = false
             }
         }
+        .onChange(of: returnToSearchHome) { returnHome in
+            if returnHome {
+                pushFollowersList = false
+                returnToSearchHome = false
+            }
+        }
         .fullScreenCover(isPresented: $showUsernameAlert) {
             GFAlertView(
                 alertTitle: "Username No-No",
@@ -78,6 +86,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(returnToSearchHome: .constant(false))
     }
 }

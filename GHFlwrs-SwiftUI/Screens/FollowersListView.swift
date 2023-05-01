@@ -33,6 +33,15 @@ struct FollowersListView: View {
         }
         .navigationTitle(viewModel.username)
         .navigationBarTitleDisplayMode(.large)
+        .overlay {
+            ZStack {
+                Color.systemBackground.opacity(viewModel.loadProgressViewOpacity)
+                if viewModel.loadProgressViewOpacity > 0 {
+                    ProgressView()
+                }
+            }
+        }
+        .animation(.default, value: viewModel.loadProgressViewOpacity)
         .fullScreenCover(isPresented: $viewModel.showNetworkAlert) {
             showFollowersListOnStack = false
         } content: {
