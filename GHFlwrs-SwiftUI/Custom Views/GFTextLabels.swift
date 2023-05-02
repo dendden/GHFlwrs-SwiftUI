@@ -9,11 +9,11 @@ import SwiftUI
 
 extension Text {
 
-    func gfTitle(alignment: TextAlignment, fontSize: CGFloat) -> some View {
+    func gfTitle(alignment: TextAlignment, fontSize: CGFloat, lineLimit: Int = 1) -> some View {
         self
             .font(.system(size: fontSize, weight: .bold, design: .rounded))
             .multilineTextAlignment(alignment)
-            .lineLimit(1)
+            .lineLimit(lineLimit)
             .minimumScaleFactor(0.85)
             .truncationMode(.tail)
     }

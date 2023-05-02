@@ -21,6 +21,18 @@ struct FollowersListView: View {
     }
 
     var body: some View {
+        if viewModel.showEmptyState {
+            GFEmptyStateView(
+                message: "This user doesn't have any followers yet. You can be the first! 🥹"
+            )
+            .navigationTitle(viewModel.username)
+            .navigationBarTitleDisplayMode(.large)
+        } else {
+            followersGridView
+        }
+    }
+
+    private var followersGridView: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: columns, spacing: 10) {
                 ForEach(viewModel.followers, id: \.login) { follower in
@@ -47,12 +59,11 @@ struct FollowersListView: View {
         } content: {
             GFAlertView(alertTitle: "Problemo! 🤦🏻", alertMessage: $viewModel.networkAlertMessage)
         }
-
     }
 }
 
 struct FollowersListView_Previews: PreviewProvider {
     static var previews: some View {
-        FollowersListView(username: "Den", showOnStack: .constant(true))
+        FollowersListView(username: "mrbombhead", showOnStack: .constant(true))
     }
 }

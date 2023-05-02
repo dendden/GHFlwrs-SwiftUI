@@ -20,6 +20,7 @@ extension FollowersListView {
         @Published var showNetworkAlert = false
         @Published var networkAlertMessage = "no comprendo"
         @Published var loadProgressViewOpacity: Double = 0
+        @Published var showEmptyState = false
 
         init(username: String) {
             self.username = username
@@ -46,6 +47,9 @@ extension FollowersListView {
                     DispatchQueue.main.async {
                         self.followers.append(contentsOf: success)
                         self.lastLoadedFollower = self.followers.last
+                        if self.followers.isEmpty {
+                            self.showEmptyState = true
+                        }
                     }
                 case .failure(let failure):
                     DispatchQueue.main.async {
