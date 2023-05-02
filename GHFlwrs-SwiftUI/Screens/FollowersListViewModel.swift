@@ -21,6 +21,7 @@ extension FollowersListView {
 
         @Published var filterText = ""
         @Published var followersToDisplay: [Follower] = []
+        @Published var selectedFollower: Follower?
         @Published var showNetworkAlert = false
         @Published var networkAlertMessage = "no comprendo"
         @Published var loadProgressViewOpacity: Double = 0

@@ -40,6 +40,9 @@ struct FollowersListView: View {
                         .onAppear {
                             viewModel.loadMoreFollowers(currentFollower: follower)
                         }
+                        .onTapGesture {
+                            viewModel.selectedFollower = follower
+                        }
                 }
             }
             .searchable(text: $viewModel.filterText, prompt: "Search username")
@@ -47,6 +50,9 @@ struct FollowersListView: View {
                 withAnimation {
                     viewModel.updateSearchResults()
                 }
+            }
+            .sheet(item: $viewModel.selectedFollower) { follower in
+                UserInfoView(user: follower)
             }
         }
         .navigationTitle(viewModel.username)
