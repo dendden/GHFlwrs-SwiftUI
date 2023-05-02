@@ -35,11 +35,17 @@ struct FollowersListView: View {
     private var followersGridView: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(viewModel.followers, id: \.login) { follower in
+                ForEach(viewModel.followersToDisplay, id: \.login) { follower in
                     FollowerCellView(follower: follower)
                         .onAppear {
                             viewModel.loadMoreFollowers(currentFollower: follower)
                         }
+                }
+            }
+            .searchable(text: $viewModel.filterText, prompt: "Search username")
+            .onChange(of: viewModel.filterText) { _ in
+                withAnimation {
+                    viewModel.updateSearchResults()
                 }
             }
         }
@@ -47,8 +53,8 @@ struct FollowersListView: View {
         .navigationBarTitleDisplayMode(.large)
         .overlay {
             ZStack {
-                Color.systemBackground.opacity(viewModel.loadProgressViewOpacity)
                 if viewModel.loadProgressViewOpacity > 0 {
+                    Color.systemBackground.opacity(viewModel.loadProgressViewOpacity)
                     ProgressView()
                 }
             }

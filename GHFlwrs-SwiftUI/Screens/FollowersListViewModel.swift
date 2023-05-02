@@ -16,7 +16,11 @@ extension FollowersListView {
         var hasMoreFollowersToLoad = true
         var lastLoadedFollower: Follower?
 
-        @Published var followers: [Follower] = []
+        var allFollowers: [Follower] = []
+        var filteredFollowers: [Follower] = []
+
+        @Published var filterText = ""
+        @Published var followersToDisplay: [Follower] = []
         @Published var showNetworkAlert = false
         @Published var networkAlertMessage = "no comprendo"
         @Published var loadProgressViewOpacity: Double = 0
@@ -45,10 +49,12 @@ extension FollowersListView {
                         self.hasMoreFollowersToLoad = false
                     }
                     DispatchQueue.main.async {
-                        self.followers.append(contentsOf: success)
-                        self.lastLoadedFollower = self.followers.last
-                        if self.followers.isEmpty {
+                        self.allFollowers.append(contentsOf: success)
+                        self.lastLoadedFollower = self.allFollowers.last
+                        if self.allFollowers.isEmpty {
                             self.showEmptyState = true
+                        } else {
+                            self.updateDisplayedFollowers(with: self.allFollowers)
                         }
                     }
                 case .failure(let failure):
@@ -68,6 +74,28 @@ extension FollowersListView {
                 followersRequestPage += 1
                 getFollowers(username: username, page: followersRequestPage)
             }
+        }
+
+        func updateDisplayedFollowers(with followers: [Follower]) {
+            followersToDisplay = followers
+        }
+
+        func updateSearchResults() {
+            if filterText.isEmpty {
+                if filteredFollowers.isEmpty {
+                    return
+                } else {
+                    // if search bar BECAME empty after previous filtering
+                    updateDisplayedFollowers(with: allFollowers)
+                    filteredFollowers.removeAll()
+                    return
+                }
+            }
+
+            filteredFollowers = allFollowers.filter {
+                $0.login.lowercased().contains(filterText.lowercased())
+            }
+            updateDisplayedFollowers(with: filteredFollowers)
         }
     }
 }
