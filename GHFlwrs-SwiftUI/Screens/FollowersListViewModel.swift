@@ -24,7 +24,7 @@ extension FollowersListView {
         @Published var selectedFollower: Follower?
         @Published var showNetworkAlert = false
         @Published var networkAlertMessage = "no comprendo"
-        @Published var loadProgressViewOpacity: Double = 0
+        @Published var showLoadingProgress = false
         @Published var showEmptyState = false
 
         init(username: String) {
@@ -34,14 +34,14 @@ extension FollowersListView {
 
         func getFollowers(username: String, page: Int) {
 
-            loadProgressViewOpacity = 0.8
+            showLoadingProgress = true
 
             NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
 
                 guard let self = self else { return }
 
                 DispatchQueue.main.async {
-                    self.loadProgressViewOpacity = 0
+                    self.showLoadingProgress = false
                 }
 
                 switch result {
