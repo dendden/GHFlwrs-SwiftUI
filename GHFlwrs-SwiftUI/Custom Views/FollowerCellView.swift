@@ -9,22 +9,14 @@ import SwiftUI
 
 struct FollowerCellView: View {
 
-    @StateObject var viewModel: ViewModel
-
-    init(follower: Follower) {
-        let viewModel = ViewModel(follower: follower)
-        self._viewModel = StateObject(wrappedValue: viewModel)
-    }
+    let follower: Follower
 
     var body: some View {
 
         VStack(spacing: 12) {
-            viewModel.avatarImage
-                .resizable()
-                .cornerRadius(10)
-                .aspectRatio(1, contentMode: .fit)
+            GFAvatarImageView(avatarUrl: follower.avatarUrl)
 
-            Text(viewModel.follower.login)
+            Text(follower.login)
                 .gfTitle(alignment: .center, fontSize: 16)
                 .frame(height: 20)
         }

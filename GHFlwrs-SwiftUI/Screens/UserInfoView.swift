@@ -11,24 +11,51 @@ struct UserInfoView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    let user: Follower
+    @StateObject var viewModel: ViewModel
+
+    init(username: String) {
+        self._viewModel = StateObject(wrappedValue: ViewModel(username: username))
+    }
 
     var body: some View {
         NavigationStack {
-            Text("User details go here...")
-                .navigationTitle(user.login)
+            if !viewModel.showProgressView {
+                GeometryReader { geo in
+                    VStack {
+                        GFUserInfoHeaderView(user: viewModel.user!, screenWidth: geo.size.width)
+
+                        Spacer()
+                    }
+                }
+                .navigationTitle(viewModel.username)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Done", role: .cancel, action: dismiss.callAsFunction)
                     }
                 }
+            } else {
+                ProgressView()
+                    .navigationTitle(viewModel.username)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Done", role: .cancel, action: dismiss.callAsFunction)
+                        }
+                    }
+            }
         }
+        .fullScreenCover(isPresented: $viewModel.showNetworkErrorAlert) {
+            dismiss()
+        } content: {
+            GFAlertView(alertTitle: "Problemo! 🤦🏻", alertMessage: $viewModel.networkAlertMessage)
+        }
+
     }
 }
 
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        UserInfoView(user: .example)
+        UserInfoView(username: "dendden")
     }
 }

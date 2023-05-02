@@ -45,6 +45,7 @@ struct FollowersListView: View {
                         }
                 }
             }
+            .padding(.horizontal)
             .searchable(text: $viewModel.filterText, prompt: "Search username")
             .onChange(of: viewModel.filterText) { _ in
                 withAnimation {
@@ -52,7 +53,7 @@ struct FollowersListView: View {
                 }
             }
             .sheet(item: $viewModel.selectedFollower) { follower in
-                UserInfoView(user: follower)
+                UserInfoView(username: follower.login)
             }
         }
         .navigationTitle(viewModel.username)

@@ -24,4 +24,20 @@ struct User: Codable {
     var followersUrl: String
 
     var createdAt: String
+
+    static let example = User(
+        login: "Dendden",
+        avatarUrl: "https://avatars.githubusercontent.com/u/13221911?v=4",
+        name: "Denys Triasunov",
+        location: "Kyiv, Ukraine",
+        // swiftlint:disable:next line_length
+        bio: "iOS developer (Swift, UIKit, SwiftUI), UI/UX designer, author of Box Breathe and Drinkology (both live on App Store).",
+        publicRepos: 41,
+        publicGists: 0,
+        htmlUrl: "https://github.com/dendden",
+        following: 1,
+        followers: 2,
+        followersUrl: "https://api.github.com/users/dendden/followers",
+        createdAt: "2015-07-07T15:01:34Z"
+    )
 }

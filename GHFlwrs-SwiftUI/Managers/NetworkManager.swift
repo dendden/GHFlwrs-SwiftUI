@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class NetworkManager {
 
@@ -69,6 +70,52 @@ class NetworkManager {
         task.resume()
     }
 
+    /// Executes the task of fetching user JSON data and
+    /// interpreting that data into a ``User`` struct.
+    /// - Parameters:
+    ///   - username: A name of user whose information must be
+    ///   retrieved.
+    ///   - completion: A result type with the ``User`` struct
+    ///   in `.success` case and a descriptive ``GFNetworkError``
+    ///   in case of `.failure`.
+    func getUserInfo(
+        for username: String,
+        completion: @escaping (Result<User, GFNetworkError>) -> Void
+    ) {
+        let endpoint = baseURL + "\(username)"
+
+        guard let url = URL(string: endpoint) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+
+            guard error == nil else {
+                completion(.failure(.connectionError))
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(.dataError))
+                return
+            }
+
+            do {
+                let user = try self.decodeJSON(data: data, as: User.self)
+                completion(.success(user))
+            } catch {
+                completion(.failure(.jsonError))
+            }
+        }
+        task.resume()
+    }
+
     private func decodeJSON<T: Decodable>(
         data: Data,
         as type: T.Type = T.self,
@@ -81,5 +128,53 @@ class NetworkManager {
         decoder.keyDecodingStrategy = keyDecodingStrategy
 
         return try decoder.decode(T.self, from: data)
+    }
+
+    func downloadImage(from urlString: String, completion: @escaping (Result<Image, GFNetworkError>) -> Void) {
+
+        // check if image is already in cache - so there's no need for download
+        if let image = cache.object(forKey: NSString(string: urlString)) {
+            let image = Image(uiImage: image)
+            completion(.success(image))
+            return
+        }
+
+        guard let url = URL(string: urlString) else { return }
+
+        let networkTask = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+
+            guard let self = self else {
+                completion(.failure(.invalidURL))
+                return
+            }
+
+            if error != nil {
+                completion(.failure(.connectionError))
+                return
+            }
+
+            guard
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200
+            else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(.dataError))
+                return
+            }
+
+            guard let uiImage = UIImage(data: data) else {
+                completion(.failure(.dataError))
+                return
+            }
+            cache.setObject(uiImage, forKey: NSString(string: urlString))
+
+            let image = Image(uiImage: uiImage)
+            completion(.success(image))
+        }
+        networkTask.resume()
     }
 }

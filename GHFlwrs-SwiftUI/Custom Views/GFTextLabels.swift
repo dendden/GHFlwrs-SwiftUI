@@ -18,6 +18,16 @@ extension Text {
             .truncationMode(.tail)
     }
 
+    func gfSubtitle(fontSize: CGFloat, alignment: TextAlignment = .leading, lineLimit: Int = 1) -> some View {
+        self
+            .font(.system(size: fontSize, weight: .medium, design: .rounded))
+            .foregroundColor(.secondary)
+            .multilineTextAlignment(alignment)
+            .lineLimit(lineLimit)
+            .minimumScaleFactor(0.85)
+            .truncationMode(.tail)
+    }
+
     func gfBody(alignment: TextAlignment, numOfLines: Int) -> some View {
         self
             .font(.body)
