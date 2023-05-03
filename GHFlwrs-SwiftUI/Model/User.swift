@@ -23,7 +23,7 @@ struct User: Codable {
     var followers: Int
     var followersUrl: String
 
-    var createdAt: String
+    var createdAt: Date
 
     static let example = User(
         login: "Dendden",
@@ -38,6 +38,6 @@ struct User: Codable {
         following: 1,
         followers: 2,
         followersUrl: "https://api.github.com/users/dendden/followers",
-        createdAt: "2015-07-07T15:01:34Z"
+        createdAt: .now
     )
 }

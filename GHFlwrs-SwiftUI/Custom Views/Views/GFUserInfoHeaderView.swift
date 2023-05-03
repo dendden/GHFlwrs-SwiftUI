@@ -26,12 +26,7 @@ struct GFUserInfoHeaderView: View {
 
                     Spacer()
 
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(user.name ?? "")
-                            .gfSubtitle(fontSize: 18)
-                        Text("\(Image(systemName: "mappin.and.ellipse"))  \(user.location ?? "*n/a*")")
-                            .gfSubtitle(fontSize: 18)
-                    }
+                    locationLabel
                 }
 
                 Spacer()
@@ -42,6 +37,16 @@ struct GFUserInfoHeaderView: View {
                 .gfBody(alignment: .leading, numOfLines: 3)
         }
         .padding(20)
+    }
+
+    private var locationLabel: some View {
+
+        VStack(alignment: .leading, spacing: 6) {
+            Text(user.name ?? "")
+                .gfSubtitle(fontSize: 18)
+            Text("\(Image(systemName: "mappin.and.ellipse"))  \(user.location ?? "*n/a*")")
+                .gfSubtitle(fontSize: 18)
+        }
     }
 }
 

@@ -39,7 +39,7 @@ struct SearchView: View {
 
                 Spacer()
 
-                GFButton(action: pushFollowersListIfValid, color: .green, label: "Get Followers")
+                GFButton(color: .green, label: "Get Followers", action: pushFollowersListIfValid)
                     .padding(.horizontal, 50)
             }
             .padding(.vertical, 48)

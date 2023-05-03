@@ -19,30 +19,28 @@ struct UserInfoView: View {
 
     var body: some View {
         NavigationStack {
-            if !viewModel.showProgressView {
-                GeometryReader { geo in
-                    VStack {
-                        GFUserInfoHeaderView(user: viewModel.user!, screenWidth: geo.size.width)
+            Group {
+                if !viewModel.showProgressView {
+                    GeometryReader { geo in
+                        VStack(spacing: 20) {
+                            GFUserInfoHeaderView(user: viewModel.user!, screenWidth: geo.size.width)
 
-                        Spacer()
-                    }
-                }
-                .navigationTitle(viewModel.username)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Done", role: .cancel, action: dismiss.callAsFunction)
-                    }
-                }
-            } else {
-                ProgressView()
-                    .navigationTitle(viewModel.username)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button("Done", role: .cancel, action: dismiss.callAsFunction)
+                            GFItemCardView(user: viewModel.user!, cardType: .repo)
+
+                            GFItemCardView(user: viewModel.user!, cardType: .follower)
+
+                            Text("GitHub since \(viewModel.user!.createdAt.shortMonthAndYear)")
+                                .gfBody(alignment: .center, numOfLines: 1)
                         }
                     }
+                } else {
+                    ProgressView()
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done", role: .cancel, action: dismiss.callAsFunction)
+                }
             }
         }
         .fullScreenCover(isPresented: $viewModel.showNetworkErrorAlert) {
