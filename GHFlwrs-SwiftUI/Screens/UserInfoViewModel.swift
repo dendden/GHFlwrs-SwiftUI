@@ -12,10 +12,14 @@ extension UserInfoView {
 
         let username: String
         var user: User?
+        var userProfileUrl: URL?
 
         @Published var showProgressView = true
         @Published var showNetworkErrorAlert = false
         @Published var networkAlertMessage = "no comprendo"
+
+        @Published var showUserProfileWebView = false
+        @Published var showUserUrlErrorAlert = false
 
         init(username: String) {
             self.username = username
@@ -29,6 +33,7 @@ extension UserInfoView {
                 case .success(let user):
                     DispatchQueue.main.async {
                         self.user = user
+                        self.userProfileUrl = URL(string: user.htmlUrl)
                         self.showProgressView = false
                     }
                 case .failure(let failure):
@@ -38,6 +43,15 @@ extension UserInfoView {
                     }
                 }
             }
+        }
+
+        func showUserWebProfile() {
+            guard userProfileUrl != nil else {
+                showUserUrlErrorAlert = true
+                return
+            }
+
+            showUserProfileWebView = true
         }
     }
 }

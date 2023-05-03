@@ -13,6 +13,8 @@ enum InfoCardType {
 
 struct GFItemCardView: View {
 
+    @EnvironmentObject var userInfoViewModel: UserInfoView.ViewModel
+
     let user: User
     let cardType: InfoCardType
 
@@ -48,9 +50,7 @@ struct GFItemCardView: View {
     private var cardActionButton: GFButton {
         switch cardType {
         case .repo:
-            return GFButton(color: .indigo, label: "GitHub Followers") {
-                // open github in WebView
-            }
+            return GFButton(color: .indigo, label: "GitHub Profile", action: userInfoViewModel.showUserWebProfile)
         case .follower:
             return GFButton(color: .green, label: "Get Followers") {
                 // show followers screen
@@ -62,5 +62,6 @@ struct GFItemCardView: View {
 struct CGItemCardView_Previews: PreviewProvider {
     static var previews: some View {
         GFItemCardView(user: .example, cardType: .follower)
+            .environmentObject(UserInfoView.ViewModel(username: "dendden"))
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct UserInfoView: View {
 
@@ -26,11 +27,15 @@ struct UserInfoView: View {
                             GFUserInfoHeaderView(user: viewModel.user!, screenWidth: geo.size.width)
 
                             GFItemCardView(user: viewModel.user!, cardType: .repo)
+                                .environmentObject(viewModel)
 
                             GFItemCardView(user: viewModel.user!, cardType: .follower)
 
                             Text("GitHub since \(viewModel.user!.createdAt.shortMonthAndYear)")
                                 .gfBody(alignment: .center, numOfLines: 1)
+                        }
+                        .sheet(isPresented: $viewModel.showUserProfileWebView) {
+                            GFWebView(urlToShow: viewModel.userProfileUrl!)
                         }
                     }
                 } else {
