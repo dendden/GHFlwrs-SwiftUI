@@ -11,7 +11,7 @@ import Foundation
 ///
 /// Spotted in `ramzesenok` answer on `StackOverflow`:
 /// https://stackoverflow.com/questions/58837007/multiple-sheetispresented-doesnt-work-in-swiftui
-enum ActiveAlert: Identifiable {
+enum ActiveUserInfoAlert: Identifiable {
     case networkError, userUrl, zeroFollowers
 
     var id: Int { hashValue }
@@ -24,7 +24,7 @@ extension UserInfoView {
         var user: User?
         var userProfileUrl: URL?
 
-        @Published var activeAlert: ActiveAlert?
+        @Published var activeAlert: ActiveUserInfoAlert?
 
         @Published var showProgressView = true
         @Published var networkAlertMessage = "no comprendo"

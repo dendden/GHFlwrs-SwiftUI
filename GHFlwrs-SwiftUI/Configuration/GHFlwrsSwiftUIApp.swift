@@ -15,6 +15,15 @@ struct GHFlwrsSwiftUIApp: App {
         appearance.configureWithDefaultBackground()
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
+
+        PersistenceManager.retrieveBookmarks { result in
+            switch result {
+            case .success(let bookmarks):
+                PersistenceManager.allBookmarkedUsers = bookmarks.map { $0.login }
+            case .failure:
+                fatalError("Unable to establish bookmarks persistence process.")
+            }
+        }
     }
 
     var body: some Scene {

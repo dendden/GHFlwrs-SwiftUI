@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum ActiveBookmarkAlert: Identifiable {
+    case bookmarkFailure, bookmarkError, bookmarkSuccess
+
+    var id: Int { hashValue }
+}
+
 extension FollowersListView {
     @MainActor class ViewModel: ObservableObject {
 
@@ -19,11 +25,14 @@ extension FollowersListView {
         var allFollowers: [Follower] = []
         var filteredFollowers: [Follower] = []
 
+        @Published var activeBookmarkAlert: ActiveBookmarkAlert?
+
         @Published var filterText = ""
         @Published var followersToDisplay: [Follower] = []
         @Published var selectedFollower: Follower?
         @Published var showNetworkAlert = false
         @Published var networkAlertMessage = "no comprendo"
+        @Published var bookmarkErrorMessage = "something's wrong"
         @Published var showLoadingProgress = false
         @Published var showEmptyState = false
 
@@ -111,6 +120,42 @@ extension FollowersListView {
             followersToDisplay.removeAll()
 
             getFollowers(username: username, page: followersRequestPage)
+        }
+
+        func bookmarkTapped() {
+
+            showLoadingProgress = true
+
+            NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+
+                guard let self = self else { return }
+
+                DispatchQueue.main.async {
+                    self.showLoadingProgress = false
+                }
+
+                switch result {
+                case .success(let user):
+                    let bookmark = Follower(login: user.login, avatarUrl: user.avatarUrl)
+                    PersistenceManager.updateWith(bookmark, actionType: .add) { [weak self] error in
+                        guard let self = self else { return }
+                        if let error = error {
+                            DispatchQueue.main.async {
+                                self.bookmarkErrorMessage = error.rawValue
+                                self.activeBookmarkAlert = .bookmarkError
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.activeBookmarkAlert = .bookmarkSuccess
+                            }
+                        }
+                    }
+                case .failure:
+                    DispatchQueue.main.async {
+                        self.activeBookmarkAlert = .bookmarkFailure
+                    }
+                }
+            }
         }
     }
 }

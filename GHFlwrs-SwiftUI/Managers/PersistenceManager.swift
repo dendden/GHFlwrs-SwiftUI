@@ -17,7 +17,9 @@ enum PersistenceManager {
         static let bookmarkedUsers = "bookmarked_users.json"
     }
 
-    static func updateBookmark(
+    static var allBookmarkedUsers: [String] = []
+
+    static func updateWith(
         _ bookmark: Follower, actionType: PersistenceActionType,
         completion: @escaping (GFPersistenceError?) -> Void
     ) {
@@ -34,11 +36,14 @@ enum PersistenceManager {
                 case .add:
                     if !updatingBookmarks.contains(bookmark) {
                         updatingBookmarks.append(bookmark)
+                        allBookmarkedUsers.append(bookmark.login)
                     } else {
                         completion(.bookmarkExists)
+                        return
                     }
                 case .remove:
                     updatingBookmarks.removeAll { $0 == bookmark }
+                    allBookmarkedUsers.removeAll { $0 == bookmark.login }
                 }
 
                 completion(saveBookmarks(updatingBookmarks))
