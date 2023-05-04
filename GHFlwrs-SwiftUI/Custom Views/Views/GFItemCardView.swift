@@ -52,9 +52,7 @@ struct GFItemCardView: View {
         case .repo:
             return GFButton(color: .indigo, label: "GitHub Profile", action: userInfoViewModel.showUserWebProfile)
         case .follower:
-            return GFButton(color: .green, label: "Get Followers") {
-                // show followers screen
-            }
+            return GFButton(color: .green, label: "Get Followers", action: userInfoViewModel.showUserFollowers)
         }
     }
 }

@@ -13,7 +13,7 @@ struct GFAlertView: View {
 
     let alertTitle: String
     @Binding var alertMessage: String
-    let buttonTitle: String = "OK"
+    var buttonTitle: String = "OK"
 
     @State private var alertContainerOpacity: CGFloat = 0
     @State private var alertContainerScale: CGFloat = 0.7

@@ -10,7 +10,7 @@ import Foundation
 extension FollowersListView {
     @MainActor class ViewModel: ObservableObject {
 
-        let username: String
+        var username: String
 
         var followersRequestPage = 1
         var hasMoreFollowersToLoad = true
@@ -97,6 +97,20 @@ extension FollowersListView {
                 $0.login.lowercased().contains(filterText.lowercased())
             }
             updateDisplayedFollowers(with: filteredFollowers)
+        }
+
+        func showFollowersOfUser(username: String) {
+
+            self.username = username
+
+            followersRequestPage = 1
+            hasMoreFollowersToLoad = true
+            lastLoadedFollower = nil
+            allFollowers.removeAll()
+            filteredFollowers.removeAll()
+            followersToDisplay.removeAll()
+
+            getFollowers(username: username, page: followersRequestPage)
         }
     }
 }

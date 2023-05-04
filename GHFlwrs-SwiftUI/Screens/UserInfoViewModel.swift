@@ -7,6 +7,16 @@
 
 import Foundation
 
+/// An enum dedicated to multiple alerts organization.
+///
+/// Spotted in `ramzesenok` answer on `StackOverflow`:
+/// https://stackoverflow.com/questions/58837007/multiple-sheetispresented-doesnt-work-in-swiftui
+enum ActiveAlert: Identifiable {
+    case networkError, userUrl, zeroFollowers
+
+    var id: Int { hashValue }
+}
+
 extension UserInfoView {
     @MainActor class ViewModel: ObservableObject {
 
@@ -14,12 +24,12 @@ extension UserInfoView {
         var user: User?
         var userProfileUrl: URL?
 
-        @Published var showProgressView = true
-        @Published var showNetworkErrorAlert = false
-        @Published var networkAlertMessage = "no comprendo"
+        @Published var activeAlert: ActiveAlert?
 
+        @Published var showProgressView = true
+        @Published var networkAlertMessage = "no comprendo"
         @Published var showUserProfileWebView = false
-        @Published var showUserUrlErrorAlert = false
+        @Published var shouldDismissForNewFollowers = false
 
         init(username: String) {
             self.username = username
@@ -39,7 +49,7 @@ extension UserInfoView {
                 case .failure(let failure):
                     DispatchQueue.main.async {
                         self.networkAlertMessage = failure.rawValue
-                        self.showNetworkErrorAlert = true
+                        self.activeAlert = .networkError
                     }
                 }
             }
@@ -47,11 +57,20 @@ extension UserInfoView {
 
         func showUserWebProfile() {
             guard userProfileUrl != nil else {
-                showUserUrlErrorAlert = true
+                self.activeAlert = .userUrl
                 return
             }
 
             showUserProfileWebView = true
+        }
+
+        func showUserFollowers() {
+            guard user!.followers > 0 else {
+                self.activeAlert = .zeroFollowers
+                return
+            }
+
+            shouldDismissForNewFollowers = true
         }
     }
 }
