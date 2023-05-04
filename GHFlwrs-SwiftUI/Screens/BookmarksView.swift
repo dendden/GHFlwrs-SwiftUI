@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct FavoritesView: View {
+struct BookmarksView: View {
     var body: some View {
         NavigationStack {
             Color.pink
-                .navigationTitle("Favorites")
+                .navigationTitle("Bookmarks")
         }
     }
 }
 
 struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoritesView()
+        BookmarksView()
     }
 }

@@ -35,9 +35,9 @@ struct TabBarView: View {
             }
             .tag(1)
 
-            FavoritesView()
+            BookmarksView()
                 .tabItem {
-                    Label("Favorites", systemImage: "star")
+                    Label("Bookmarks", systemImage: "book")
                 }
                 .tag(2)
         }
