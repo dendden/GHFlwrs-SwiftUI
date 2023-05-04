@@ -12,6 +12,9 @@
 		082ACF6E2A0280EC00A2DEFD /* Date-Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF6D2A0280EC00A2DEFD /* Date-Formats.swift */; };
 		082ACF702A02D4F200A2DEFD /* GFWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF6F2A02D4F200A2DEFD /* GFWebView.swift */; };
 		082ACF722A037FA400A2DEFD /* FollowersGridScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF712A037FA400A2DEFD /* FollowersGridScrollView.swift */; };
+		082ACF7A2A03FED900A2DEFD /* GFPersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF792A03FED900A2DEFD /* GFPersistenceError.swift */; };
+		082ACF7C2A03FF1400A2DEFD /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF7B2A03FF1400A2DEFD /* PersistenceManager.swift */; };
+		082ACF7E2A03FF7900A2DEFD /* FileManager-Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */; };
 		08DA076829FE59D90095A194 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076729FE59D90095A194 /* Follower.swift */; };
 		08DA076A29FE59E70095A194 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076929FE59E70095A194 /* User.swift */; };
 		08DA076D29FE5A470095A194 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076C29FE5A470095A194 /* NetworkManager.swift */; };
@@ -45,6 +48,9 @@
 		082ACF6D2A0280EC00A2DEFD /* Date-Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Formats.swift"; sourceTree = "<group>"; };
 		082ACF6F2A02D4F200A2DEFD /* GFWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFWebView.swift; sourceTree = "<group>"; };
 		082ACF712A037FA400A2DEFD /* FollowersGridScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersGridScrollView.swift; sourceTree = "<group>"; };
+		082ACF792A03FED900A2DEFD /* GFPersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFPersistenceError.swift; sourceTree = "<group>"; };
+		082ACF7B2A03FF1400A2DEFD /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Persistence.swift"; sourceTree = "<group>"; };
 		08DA076729FE59D90095A194 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		08DA076929FE59E70095A194 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		08DA076C29FE5A470095A194 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				08DA076C29FE5A470095A194 /* NetworkManager.swift */,
+				082ACF7B2A03FF1400A2DEFD /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -126,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				08DA077229FEAE420095A194 /* GFNetworkError.swift */,
+				082ACF792A03FED900A2DEFD /* GFPersistenceError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -204,6 +212,7 @@
 				08F3586129F934710058845D /* Color-SystemColors.swift */,
 				08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */,
 				082ACF6D2A0280EC00A2DEFD /* Date-Formats.swift */,
+				082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -317,11 +326,13 @@
 				08F3584429F832F40058845D /* TabBarView.swift in Sources */,
 				082ACF722A037FA400A2DEFD /* FollowersGridScrollView.swift in Sources */,
 				08F3587029F996B80058845D /* GFTextLabels.swift in Sources */,
+				082ACF7E2A03FF7900A2DEFD /* FileManager-Persistence.swift in Sources */,
 				08DA077929FEE42F0095A194 /* FollowerCellView.swift in Sources */,
 				08F3586229F934710058845D /* Color-SystemColors.swift in Sources */,
 				082ACF632A02600E00A2DEFD /* GFItemCardView.swift in Sources */,
 				08DA07812A0011260095A194 /* FollowersListViewModel.swift in Sources */,
 				08F3585E29F92E330058845D /* GFButton.swift in Sources */,
+				082ACF7A2A03FED900A2DEFD /* GFPersistenceError.swift in Sources */,
 				082ACF702A02D4F200A2DEFD /* GFWebView.swift in Sources */,
 				082ACF612A025C4300A2DEFD /* GFItemInfoView.swift in Sources */,
 				08DA077329FEAE420095A194 /* GFNetworkError.swift in Sources */,
@@ -330,6 +341,7 @@
 				08DA07A22A0188600095A194 /* UserInfoViewModel.swift in Sources */,
 				08F3585429F843340058845D /* SearchView.swift in Sources */,
 				08DA076D29FE5A470095A194 /* NetworkManager.swift in Sources */,
+				082ACF7C2A03FF1400A2DEFD /* PersistenceManager.swift in Sources */,
 				082ACF6E2A0280EC00A2DEFD /* Date-Formats.swift in Sources */,
 				08DA078C2A00CBF60095A194 /* GFEmptyStateView.swift in Sources */,
 				08F3587629F9B75B0058845D /* UIView-ClearBackground.swift in Sources */,
