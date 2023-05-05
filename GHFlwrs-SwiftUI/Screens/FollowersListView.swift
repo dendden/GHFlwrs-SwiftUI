@@ -62,7 +62,7 @@ struct FollowersListView: View {
         Button {
             viewModel.bookmarkTapped()
         } label: {
-            Image(systemName: "bookmark")
+            SystemImages.bookmark
                 .symbolVariant(PersistenceManager.allBookmarkedUsers.contains(viewModel.username) ? .fill : .none)
         }
     }

@@ -12,3 +12,10 @@ enum Images {
     static let avatarPlaceholder = Image("avatar-placeholder")
     static let emptyStateLogo = Image("empty-state-logo")
 }
+
+enum SystemImages {
+    static let bookmark = Image(systemName: "bookmark")
+    static let search = Image(systemName: "magnifyingglass")
+    static let location = Image(systemName: "mappin.and.ellipse")
+    static let clear = Image(systemName: "xmark.circle.fill")
+}

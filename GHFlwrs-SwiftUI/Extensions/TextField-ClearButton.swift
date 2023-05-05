@@ -18,7 +18,7 @@ struct ClearTextButton: ViewModifier {
                 Button {
                     text = ""
                 } label: {
-                    Image(systemName: "xmark.circle.fill")
+                    SystemImages.clear
                         .foregroundColor(.primary.opacity(0.25))
                 }
                 .padding(.trailing, 6)

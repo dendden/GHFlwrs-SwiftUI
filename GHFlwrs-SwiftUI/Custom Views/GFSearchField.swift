@@ -27,7 +27,7 @@ struct GFSearchField: View {
         TextField(
             "Search username",
             text: $searchPhrase,
-            prompt: Text("\(Image(systemName: "magnifyingglass")) Search username")
+            prompt: Text("\(SystemImages.search) Search username")
         )
         .clearButton(text: $searchPhrase)
         .font(.title2)

@@ -21,6 +21,7 @@ extension FollowersListView {
         var followersRequestPage = 1
         var hasMoreFollowersToLoad = true
         var lastLoadedFollower: Follower?
+        var isLoadingMoreFollowers = false
 
         var allFollowers: [Follower] = []
         var filteredFollowers: [Follower] = []
@@ -73,6 +74,8 @@ extension FollowersListView {
                         self.showNetworkAlert = true
                     }
                 }
+
+                self.isLoadingMoreFollowers = false
             }
         }
 
@@ -80,7 +83,8 @@ extension FollowersListView {
             guard let lastFollower = lastLoadedFollower else {
                 return
             }
-            if lastFollower == currentFollower && hasMoreFollowersToLoad {
+            if lastFollower == currentFollower && hasMoreFollowersToLoad && !isLoadingMoreFollowers {
+                isLoadingMoreFollowers = true
                 followersRequestPage += 1
                 getFollowers(username: username, page: followersRequestPage)
             }
