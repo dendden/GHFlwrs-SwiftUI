@@ -23,7 +23,7 @@ struct GFEmptyStateView: View {
 
                 Spacer()
 
-                Image("empty-state-logo")
+                Images.emptyStateLogo
                     .resizable()
                     .scaledToFit()
                     .frame(width: geo.size.width * 1.3, height: geo.size.width * 1.3)

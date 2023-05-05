@@ -17,6 +17,8 @@
 		082ACF7E2A03FF7900A2DEFD /* FileManager-Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */; };
 		082ACF832A0431D700A2DEFD /* BookmarkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF822A0431D700A2DEFD /* BookmarkCellView.swift */; };
 		082ACF852A04D56F00A2DEFD /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF842A04D56F00A2DEFD /* BookmarksViewModel.swift */; };
+		082ACF892A051C1200A2DEFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF882A051C1200A2DEFD /* Constants.swift */; };
+		082ACF8B2A051DA700A2DEFD /* TextField-ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF8A2A051DA700A2DEFD /* TextField-ClearButton.swift */; };
 		08DA076829FE59D90095A194 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076729FE59D90095A194 /* Follower.swift */; };
 		08DA076A29FE59E70095A194 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076929FE59E70095A194 /* User.swift */; };
 		08DA076D29FE5A470095A194 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076C29FE5A470095A194 /* NetworkManager.swift */; };
@@ -55,6 +57,8 @@
 		082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Persistence.swift"; sourceTree = "<group>"; };
 		082ACF822A0431D700A2DEFD /* BookmarkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCellView.swift; sourceTree = "<group>"; };
 		082ACF842A04D56F00A2DEFD /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
+		082ACF882A051C1200A2DEFD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		082ACF8A2A051DA700A2DEFD /* TextField-ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField-ClearButton.swift"; sourceTree = "<group>"; };
 		08DA076729FE59D90095A194 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		08DA076929FE59E70095A194 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		08DA076C29FE5A470095A194 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			children = (
 				08DA077229FEAE420095A194 /* GFNetworkError.swift */,
 				082ACF792A03FED900A2DEFD /* GFPersistenceError.swift */,
+				082ACF882A051C1200A2DEFD /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */,
 				082ACF6D2A0280EC00A2DEFD /* Date-Formats.swift */,
 				082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */,
+				082ACF8A2A051DA700A2DEFD /* TextField-ClearButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08DA076A29FE59E70095A194 /* User.swift in Sources */,
+				082ACF892A051C1200A2DEFD /* Constants.swift in Sources */,
 				08F3587429F9AE9F0058845D /* GFAlertView.swift in Sources */,
 				082ACF832A0431D700A2DEFD /* BookmarkCellView.swift in Sources */,
 				08F3585829F843D60058845D /* BookmarksView.swift in Sources */,
@@ -354,6 +361,7 @@
 				08DA077329FEAE420095A194 /* GFNetworkError.swift in Sources */,
 				08DA076829FE59D90095A194 /* Follower.swift in Sources */,
 				08DA079A2A0173630095A194 /* GFUserInfoHeaderView.swift in Sources */,
+				082ACF8B2A051DA700A2DEFD /* TextField-ClearButton.swift in Sources */,
 				08DA07A22A0188600095A194 /* UserInfoViewModel.swift in Sources */,
 				08F3585429F843340058845D /* SearchView.swift in Sources */,
 				08DA076D29FE5A470095A194 /* NetworkManager.swift in Sources */,

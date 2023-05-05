@@ -22,7 +22,7 @@ struct SearchView: View {
     var body: some View {
 
         VStack {
-            Image("gh-logo")
+            Images.ghLogo
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: .infinity)
@@ -66,6 +66,9 @@ struct SearchView: View {
                     "Looks like you forgot to input anything except emptiness in that search field 🥺."
                 )
             )
+        }
+        .onAppear {
+            usernameToSearch = ""
         }
     }
 

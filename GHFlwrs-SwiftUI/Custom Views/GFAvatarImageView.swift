@@ -11,7 +11,7 @@ struct GFAvatarImageView: View {
 
     let avatarUrl: String
 
-    @State private var avatarImage = Image("avatar-placeholder")
+    @State private var avatarImage = Images.avatarPlaceholder
 
     var body: some View {
         avatarImage

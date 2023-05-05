@@ -29,23 +29,24 @@ struct GFSearchField: View {
             text: $searchPhrase,
             prompt: Text("\(Image(systemName: "magnifyingglass")) Search username")
         )
-            .font(.title2)
-            .lineLimit(1)
-            .minimumScaleFactor(0.4)
-            .multilineTextAlignment(.center)
-            .autocorrectionDisabled(true)
-            .textInputAutocapitalization(.never)
-            .tint(.primary)
-            .padding(.vertical)
-            .frame(maxWidth: .infinity)
-            .submitLabel(.go)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.tertiarySystemBackground)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(Color.systemGray4, lineWidth: 2)
-            )
+        .clearButton(text: $searchPhrase)
+        .font(.title2)
+        .lineLimit(1)
+        .minimumScaleFactor(0.4)
+        .multilineTextAlignment(.center)
+        .autocorrectionDisabled(true)
+        .textInputAutocapitalization(.never)
+        .tint(.primary)
+        .padding(.vertical)
+        .frame(maxWidth: .infinity)
+        .submitLabel(.go)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.tertiarySystemBackground)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .strokeBorder(Color.systemGray4, lineWidth: 2)
+        )
     }
 }
