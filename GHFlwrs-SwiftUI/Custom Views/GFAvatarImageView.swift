@@ -19,12 +19,9 @@ struct GFAvatarImageView: View {
             .cornerRadius(10)
             .aspectRatio(1, contentMode: .fit)
             .onAppear {
-                NetworkManager.shared.downloadImage(from: avatarUrl) { result in
-                    switch result {
-                    case .success(let image):
-                        self.avatarImage = image
-                    default:
-                        return
+                NetworkManager.shared.downloadImage(from: avatarUrl) { image in
+                    if let image = image {
+                        avatarImage = image
                     }
                 }
             }

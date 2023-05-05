@@ -130,50 +130,40 @@ class NetworkManager {
         return try decoder.decode(T.self, from: data)
     }
 
-    func downloadImage(from urlString: String, completion: @escaping (Result<Image, GFNetworkError>) -> Void) {
+    func downloadImage(from urlString: String, completion: @escaping (Image?) -> Void) {
+
+        let cacheKey = NSString(string: urlString)
 
         // check if image is already in cache - so there's no need for download
-        if let image = cache.object(forKey: NSString(string: urlString)) {
+        if let image = cache.object(forKey: cacheKey) {
             let image = Image(uiImage: image)
-            completion(.success(image))
+            completion(image)
             return
         }
 
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
 
         let networkTask = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
 
-            guard let self = self else {
-                completion(.failure(.invalidURL))
-                return
-            }
-
-            if error != nil {
-                completion(.failure(.connectionError))
-                return
-            }
-
             guard
+                let self = self,
+                error != nil,
                 let response = response as? HTTPURLResponse,
-                response.statusCode == 200
+                response.statusCode == 200,
+                let data = data,
+                let uiImage = UIImage(data: data)
             else {
-                completion(.failure(.invalidResponse))
+                completion(nil)
                 return
             }
 
-            guard let data = data else {
-                completion(.failure(.dataError))
-                return
-            }
-
-            guard let uiImage = UIImage(data: data) else {
-                completion(.failure(.dataError))
-                return
-            }
-            cache.setObject(uiImage, forKey: NSString(string: urlString))
+            self.cache.setObject(uiImage, forKey: cacheKey)
 
             let image = Image(uiImage: uiImage)
-            completion(.success(image))
+            completion(image)
         }
         networkTask.resume()
     }
