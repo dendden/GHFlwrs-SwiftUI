@@ -12,7 +12,7 @@ struct BookmarkCellView: View {
     let bookmark: Follower
 
     var body: some View {
-        HStack {
+        HStack(spacing: 24) {
             GFAvatarImageView(avatarUrl: bookmark.avatarUrl)
                 .frame(width: 60, height: 60)
 

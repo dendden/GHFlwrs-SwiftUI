@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBarView: View {
 
     @State private var returnToSearchHome = false
+    @State private var returnToBookmarksHome = false
     @State private var selectedTab = 1
 
     var tabSelectionHandler: Binding<Int> {
@@ -17,7 +18,12 @@ struct TabBarView: View {
             get: { selectedTab },
             set: {
                 if $0 == selectedTab {
-                    returnToSearchHome = true
+                    if selectedTab == 1 {
+                        returnToSearchHome = true
+                    }
+                    if selectedTab == 2 {
+                        returnToBookmarksHome = true
+                    }
                 }
                 self.selectedTab = $0
             }
@@ -35,11 +41,12 @@ struct TabBarView: View {
             }
             .tag(1)
 
-            BookmarksView()
+            BookmarksView(returnToBookmarksHome: $returnToBookmarksHome)
                 .tabItem {
                     Label("Bookmarks", systemImage: "book")
                 }
                 .tag(2)
+
         }
         .tint(.green)
     }

@@ -16,6 +16,7 @@
 		082ACF7C2A03FF1400A2DEFD /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF7B2A03FF1400A2DEFD /* PersistenceManager.swift */; };
 		082ACF7E2A03FF7900A2DEFD /* FileManager-Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */; };
 		082ACF832A0431D700A2DEFD /* BookmarkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF822A0431D700A2DEFD /* BookmarkCellView.swift */; };
+		082ACF852A04D56F00A2DEFD /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082ACF842A04D56F00A2DEFD /* BookmarksViewModel.swift */; };
 		08DA076829FE59D90095A194 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076729FE59D90095A194 /* Follower.swift */; };
 		08DA076A29FE59E70095A194 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076929FE59E70095A194 /* User.swift */; };
 		08DA076D29FE5A470095A194 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DA076C29FE5A470095A194 /* NetworkManager.swift */; };
@@ -53,6 +54,7 @@
 		082ACF7B2A03FF1400A2DEFD /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-Persistence.swift"; sourceTree = "<group>"; };
 		082ACF822A0431D700A2DEFD /* BookmarkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCellView.swift; sourceTree = "<group>"; };
+		082ACF842A04D56F00A2DEFD /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		08DA076729FE59D90095A194 /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 		08DA076929FE59E70095A194 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		08DA076C29FE5A470095A194 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				082ACF712A037FA400A2DEFD /* FollowersGridScrollView.swift */,
 				08DA07802A0011260095A194 /* FollowersListViewModel.swift */,
 				08F3585729F843D60058845D /* BookmarksView.swift */,
+				082ACF842A04D56F00A2DEFD /* BookmarksViewModel.swift */,
 				08DA078F2A0104160095A194 /* UserInfoView.swift */,
 				08DA07A12A0188600095A194 /* UserInfoViewModel.swift */,
 			);
@@ -341,6 +344,7 @@
 				082ACF7E2A03FF7900A2DEFD /* FileManager-Persistence.swift in Sources */,
 				08DA077929FEE42F0095A194 /* FollowerCellView.swift in Sources */,
 				08F3586229F934710058845D /* Color-SystemColors.swift in Sources */,
+				082ACF852A04D56F00A2DEFD /* BookmarksViewModel.swift in Sources */,
 				082ACF632A02600E00A2DEFD /* GFItemCardView.swift in Sources */,
 				08DA07812A0011260095A194 /* FollowersListViewModel.swift in Sources */,
 				08F3585E29F92E330058845D /* GFButton.swift in Sources */,
