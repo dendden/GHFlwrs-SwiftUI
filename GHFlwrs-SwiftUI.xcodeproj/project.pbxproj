@@ -142,6 +142,7 @@
 			children = (
 				08DA076C29FE5A470095A194 /* NetworkManager.swift */,
 				082ACF7B2A03FF1400A2DEFD /* PersistenceManager.swift */,
+				082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -179,9 +180,9 @@
 				08DA076B29FE5A340095A194 /* Managers */,
 				08DA076629FE59960095A194 /* Model */,
 				08F3589A29FD05E30058845D /* Configuration */,
-				08F3589729FD057D0058845D /* Screens */,
-				08F3589829FD05900058845D /* Custom Views */,
 				08F3589929FD05AB0058845D /* Extensions */,
+				08F3589829FD05900058845D /* Custom Views */,
+				08F3589729FD057D0058845D /* Screens */,
 				08F3584529F832F60058845D /* Assets.xcassets */,
 				08F3584729F832F60058845D /* Preview Content */,
 			);
@@ -214,13 +215,13 @@
 		08F3589829FD05900058845D /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				082ACF5F2A025C2800A2DEFD /* Views */,
 				08F3585D29F92E330058845D /* GFButton.swift */,
 				08F3586329F93B850058845D /* GFSearchField.swift */,
 				082ACF5E2A025C1600A2DEFD /* Alerts */,
 				08F3586F29F996B80058845D /* GFTextLabels.swift */,
 				08DA079F2A017CDE0095A194 /* GFAvatarImageView.swift */,
 				082ACF812A0431BE00A2DEFD /* Cells */,
-				082ACF5F2A025C2800A2DEFD /* Views */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -231,7 +232,6 @@
 				08F3586129F934710058845D /* Color-SystemColors.swift */,
 				08F3587529F9B75B0058845D /* UIView-ClearBackground.swift */,
 				082ACF6D2A0280EC00A2DEFD /* Date-Formats.swift */,
-				082ACF7D2A03FF7900A2DEFD /* FileManager-Persistence.swift */,
 				082ACF8A2A051DA700A2DEFD /* TextField-ClearButton.swift */,
 			);
 			path = Extensions;

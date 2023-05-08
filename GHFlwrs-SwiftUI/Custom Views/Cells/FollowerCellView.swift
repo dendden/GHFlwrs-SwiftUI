@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+/// A collection cell displaying follower's ``GFAvatarImageView`` and username
+/// in vertical alignment.
 struct FollowerCellView: View {
 
+    /// A follower whose avatar and username must be displayed in cell.
     let follower: Follower
 
     var body: some View {

@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// A `clear` background for the superview of superview.
+///
+/// Applied when a transparent effect is needed for current view.
 struct ClearBackgroundView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> some UIView {

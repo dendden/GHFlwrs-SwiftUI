@@ -8,13 +8,17 @@
 import UIKit
 import SwiftUI
 
+/// A singleton class performing network requests and
+/// interpreting the results.
 class NetworkManager {
 
+    /// A shared `NetworkManager` object.
     static let shared = NetworkManager()
 
     let baseURL = "https://api.github.com/users/"
     let followersPerPage = 100
 
+    /// A key-value cache for user avatar images keyed by their string `URL` addresses.
     let cache = NSCache<NSString, UIImage>()
 
     // important to have private init(), so that only class itself
@@ -35,6 +39,7 @@ class NetworkManager {
         page: Int,
         completion: @escaping (Result<[Follower], GFNetworkError>) -> Void
     ) {
+
         let parameters = "per_page=\(followersPerPage)&page=\(page)"
         let endpoint = baseURL + "\(username)/followers?\(parameters)"
 
@@ -82,6 +87,7 @@ class NetworkManager {
         for username: String,
         completion: @escaping (Result<User, GFNetworkError>) -> Void
     ) {
+
         let endpoint = baseURL + "\(username)"
 
         guard let url = URL(string: endpoint) else {
@@ -116,6 +122,16 @@ class NetworkManager {
         task.resume()
     }
 
+    /// A helper method for decoding `JSON` data into a generic type.
+    /// - Parameters:
+    ///   - data: `JSON` data to decode.
+    ///   - type: Type of data to receive as a result of decoding. Optional when
+    ///   inferred from context.
+    ///   - dateDecodingStrategy: Decoding strategy for `JSON` date formats. Default
+    ///   value is **.iso8601**.
+    ///   - keyDecodingStrategy: Decoding strategy for decoding parameter keys in `JSON`.
+    ///   Default value is **.convertFromSnakeCase**.
+    /// - Returns: Decoded data of a specified type.
     private func decodeJSON<T: Decodable>(
         data: Data,
         as type: T.Type = T.self,
@@ -130,6 +146,13 @@ class NetworkManager {
         return try decoder.decode(T.self, from: data)
     }
 
+    /// Performs a `NetworkTask` for downloading an `Image` asset from the
+    /// specified url string.
+    /// - Parameters:
+    ///   - urlString: A `String` representation of `URL` from which the
+    ///   image must be downloaded.
+    ///   - completion: A completion handler returning a `Image` if network
+    ///   request was successful, or `nil` if any error occurred during request execution.
     func downloadImage(from urlString: String, completion: @escaping (Image?) -> Void) {
 
         let cacheKey = NSString(string: urlString)

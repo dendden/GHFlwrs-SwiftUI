@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+/// A progress view displayed as an overlay on views that perform
+/// networking requests.
+///
+/// Progress view appearance and dismissal are animated.
 struct GFLoadingProgressView: View {
 
+    /// A toggle bound to hosting view that defines showing/dismissing
+    /// of progress view.
     @Binding var showProgress: Bool
+
+    /// An animation controller for progress view appearance and dismissal.
     @State private var opacity: Double = 0
 
     var body: some View {

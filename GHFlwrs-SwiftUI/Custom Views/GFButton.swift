@@ -10,7 +10,7 @@ import SwiftUI
 /// A styled Github Followers button.
 ///
 /// Default modifiers include:
-/// + *white* text color
+/// + *white* title color
 /// + *.headline* text font
 /// + frame max width set to *.infinity*
 /// + corner radius of 10

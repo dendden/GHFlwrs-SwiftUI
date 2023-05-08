@@ -8,19 +8,44 @@
 import Foundation
 
 extension BookmarksView {
+
+    /// A `ViewController` that interacts with ``PersistenceManager`` for listing
+    /// all bookmarked users and deleting individual bookmarks.
     @MainActor class ViewModel: ObservableObject {
 
+        // MARK: - @Published variables
+
+        /// All bookmarked users retrieved by ``PersistenceManager``.
         @Published var bookmarks: [Follower] = []
+
+        /// A `path` array for `NavigationStack` of ``BookmarksView``.
         @Published var selectedBookmarks: [Follower] = []
 
+        /// A trigger for showing ``GFEmptyStateView`` in ``BookmarksView`` if
+        /// list of ``bookmarks`` is empty.
         @Published var showEmptyState = false
+
+        /// A trigger for displaying ``GFAlertView`` by ``BookmarksView`` with
+        /// ``GFPersistenceError`` description.
         @Published var showBookmarksRetrieveError = false
+
+        /// Description of ``GFPersistenceError`` to pass as a message into ``GFAlertView``.
         @Published var bookmarksErrorMessage = "problem with getting bookmarks."
 
-        init() {
-            getBookmarks()
-        }
+        // MARK: - Methods
 
+        /// Calls ``PersistenceManager``.``PersistenceManager/retrieveBookmarks(completion:)``
+        /// method.
+        ///
+        /// If retrieve request fails - this method triggers presentation of a ``GFAlertView``
+        /// with ``GFPersistenceError`` description in ``BookmarksView`` by
+        /// activating ``showBookmarksRetrieveError``.
+        ///
+        /// If request returns an empty array - this method triggers display of an empty state view
+        /// in ``BookmarksView`` by activating ``showEmptyState``.
+        ///
+        /// If request is successful - this method assigns ``bookmarks``, updating `List`
+        /// in ``BookmarksView``.
         func getBookmarks() {
             PersistenceManager.retrieveBookmarks { [weak self] result in
 
@@ -46,6 +71,17 @@ extension BookmarksView {
             }
         }
 
+        /// Retrieves the bookmark selected for deletion from ``bookmarks`` array and
+        /// calls ``PersistenceManager``.``PersistenceManager/updateWith(_:actionType:completion:)``
+        /// method with ``PersistenceActionType/remove`` type.
+        ///
+        /// If the call to ``PersistenceManager`` fails - this method triggers presentation of
+        /// a ``GFAlertView`` with ``GFPersistenceError`` description in ``BookmarksView``
+        /// by activating ``showBookmarksRetrieveError``.
+        ///
+        /// If ``bookmarks`` array is empty after the call executes - this method triggers display of an
+        /// empty state view in ``BookmarksView`` by activating ``showEmptyState``.
+        /// - Parameter offsets: Offsets at which the bookmarks must be deleted.
         func deleteBookmarks(atOffsets offsets: IndexSet) {
             guard let index = offsets.first else { return }
             let bookmark = bookmarks[index]

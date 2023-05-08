@@ -8,17 +8,31 @@
 import SwiftUI
 import WebKit
 
+/// A `View` that presents detailed information about the user selected
+/// from ``FollowersGridScrollView`` collection.
 struct UserInfoView: View {
+
+    // MARK: - @State variables
 
     @Environment(\.dismiss) var dismiss
 
+    /// A `ViewModel` that performs network request to get user's followers.
     @EnvironmentObject var followersListViewModel: FollowersListView.ViewModel
 
+    /// A `ViewModel` that performs network request to get user info and manages
+    /// triggers to show user's profile in a ``SafariVCWrapper`` view or dismiss
+    /// ``UserInfoView`` for a list of user's followers.
     @StateObject var viewModel: ViewModel
 
+    // MARK: -
+
+    /// Creates an instance of ``UserInfoView``.
+    /// - Parameter username: The username of user whose information must be displayed.
     init(username: String) {
         self._viewModel = StateObject(wrappedValue: ViewModel(username: username))
     }
+
+    // MARK: - View variables
 
     var body: some View {
         NavigationStack {
@@ -69,6 +83,9 @@ struct UserInfoView: View {
         }
     }
 
+    /// An alert informing on a network request ``GFNetworkError``.
+    ///
+    /// When dismissed, this alert should also trigger dismissing this `View`.
     private var networkAlert: GFAlertView {
         GFAlertView(
             alertTitle: "Problemo! 🤦🏻",
@@ -76,6 +93,7 @@ struct UserInfoView: View {
         )
     }
 
+    /// An alert informing about invalid link to user's GitHub profile.
     private var userUrlAlert: GFAlertView {
         GFAlertView(
             alertTitle: "Broken link 🤬",
@@ -83,6 +101,7 @@ struct UserInfoView: View {
         )
     }
 
+    /// An alert informing that user's followers list is empty.
     private var zeroFollowersAlert: GFAlertView {
         GFAlertView(
             alertTitle: "Zero means zero",
@@ -92,6 +111,7 @@ struct UserInfoView: View {
     }
 }
 
+// MARK: -
 struct UserInfoView_Previews: PreviewProvider {
     static var previews: some View {
         UserInfoView(username: "dendden")

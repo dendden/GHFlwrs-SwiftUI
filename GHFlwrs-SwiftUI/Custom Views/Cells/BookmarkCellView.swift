@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+/// A table cell displaying ``GFAvatarImageView`` and username of a
+/// bookmarked user in horizontal alignment.
 struct BookmarkCellView: View {
 
+    /// A user whose avatar and username must be displayed in cell.
     let bookmark: Follower
 
     var body: some View {

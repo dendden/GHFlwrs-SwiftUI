@@ -7,8 +7,18 @@
 
 import SwiftUI
 
+/// A `View` displayed by data-driven views when their data sources are empty.
+///
+/// Shows a message in top left and an ``Images/emptyStateLogo`` image
+/// in bottom right.
 struct GFEmptyStateView: View {
 
+    /// A text displayed in view's body.
+    ///
+    /// Default label appearance includes:
+    /// + text alignment is **.leading**, font size is **28**
+    /// + **.secondary** text color
+    /// + 3 lines of text limit.
     let message: String
 
     var body: some View {

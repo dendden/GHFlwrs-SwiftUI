@@ -7,10 +7,17 @@
 
 import SwiftUI
 
+/// A selection of available types of ``User`` parameters that can be
+/// displayed by ``GFItemInfoView``.
 enum ItemInfoType {
     case repos, gists, followers, following
 }
 
+/// A custom view illustrating certain ``User`` parameter within
+/// ``GFItemCardView``.
+///
+/// This view includes an `SFSymbol` image and title label on top
+/// and count label centered beneath.
 struct GFItemInfoView: View {
 
     let infoType: ItemInfoType
@@ -18,6 +25,10 @@ struct GFItemInfoView: View {
     let imageSymbol: String
     let title: String
 
+    /// Creates an instance of ``GFItemInfoView``.
+    /// - Parameters:
+    ///   - infoType: A type that defines ``imageSymbol`` and ``title``.
+    ///   - count: The count of parameter to display.
     init(infoType: ItemInfoType, count: Int) {
         self.infoType = infoType
         self.count = count

@@ -11,13 +11,15 @@ import SwiftUI
 ///
 /// Default modifiers include:
 /// + **Font**: '.title2', lineLimit: 1, min. scale factor: 0.4, text alignment: '.center'
-/// + autocorrection disabled
+/// + autocorrection and autocapitalization disabled
 /// + cursor tint set to `.primary`
+/// + submit key of type `.go`
 /// + frame max width set to *.infinity*
 /// + background color of `tertiarySystemBackground`
 /// + border color of `systemGray4`, border width of 2
 /// + corner radius of 10
 /// + internal vertical padding
+/// + prompt of format "<``SystemImages/search`` SFSymbol> *Search username*"
 struct GFSearchField: View {
 
     @Binding var searchPhrase: String

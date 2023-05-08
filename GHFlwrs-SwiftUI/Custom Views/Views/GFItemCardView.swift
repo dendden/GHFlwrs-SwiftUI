@@ -7,17 +7,28 @@
 
 import SwiftUI
 
+/// A selection of ``GFItemCardView`` types.
 enum InfoCardType {
     case repo, follower
 }
 
+/// An card view to display in ``UserInfoView`` with ``User`` parameters
+/// and actions to perform on this user.
 struct GFItemCardView: View {
 
+    /// A `viewModel` class of ``UserInfoView`` whose methods are executed
+    /// as actions for card view's button.
     @EnvironmentObject var userInfoViewModel: UserInfoView.ViewModel
 
+    // MARK: - Struct variables
+
+    /// A ``User`` whose information is displayed in info card view.
     let user: User
+
+    /// Type of information that the card displays (*repos&gists* or *followers/following*).
     let cardType: InfoCardType
 
+    // MARK: - View variables
     var body: some View {
         GroupBox {
             VStack {
@@ -28,6 +39,9 @@ struct GFItemCardView: View {
         .padding(.horizontal)
     }
 
+    /// A horizontal stack containing two ``GFItemInfoView`` views.
+    ///
+    /// ``InfoCardType`` of views displayed in stack is defined by ``cardType`` variable.
     @ViewBuilder private var itemInfoViewsStack: some View {
         switch cardType {
         case .repo:
@@ -47,6 +61,7 @@ struct GFItemCardView: View {
         }
     }
 
+    /// A button that triggers ``userInfoViewModel`` method to perform on this user.
     private var cardActionButton: GFButton {
         switch cardType {
         case .repo:
@@ -57,6 +72,7 @@ struct GFItemCardView: View {
     }
 }
 
+// MARK: -
 struct CGItemCardView_Previews: PreviewProvider {
     static var previews: some View {
         GFItemCardView(user: .example, cardType: .follower)

@@ -7,15 +7,20 @@
 
 import SwiftUI
 
+/// The header of ``UserInfoView``, displaying user's avatar, username,
+/// (*optionally*) real name and location, as well as a short bio.
 struct GFUserInfoHeaderView: View {
 
+    /// A user whose information must be displayed.
     let user: User
+
+    /// Current screen width which defines proportions of View elements.
     let screenWidth: CGFloat
 
     var body: some View {
 
         VStack(alignment: .leading, spacing: 12) {
-            // avatar image 3 lines of labels
+            // avatar image & 3 lines of labels
             HStack(spacing: 12) {
                 GFAvatarImageView(avatarUrl: user.avatarUrl)
                     .frame(width: screenWidth / 4)
@@ -26,7 +31,7 @@ struct GFUserInfoHeaderView: View {
 
                     Spacer()
 
-                    locationLabel
+                    nameAndLocationLabel
                 }
 
                 Spacer()
@@ -39,7 +44,9 @@ struct GFUserInfoHeaderView: View {
         .padding(20)
     }
 
-    private var locationLabel: some View {
+    /// A `VStack` composed of a subtitle label with user's real name
+    /// and a subtitle label with user's location.
+    private var nameAndLocationLabel: some View {
 
         VStack(alignment: .leading, spacing: 6) {
             Text(user.name ?? "")

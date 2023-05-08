@@ -7,15 +7,32 @@
 
 import SwiftUI
 
+/// A collection listing user's followers in a 3-column `LazyVGrid` of ``FollowerCellView`` cells.
+///
+/// This collection view informs ``viewModel`` about follower selection action,
+/// scrolling to last element in collection for loading next page of followers, animates
+/// presentation of filtered followers and displays ``UserInfoView`` sheet upon
+/// follower selection.
 struct FollowersGridScrollView: View {
+
+    // MARK: - @Environment variables
 
     @Environment(\.dismissSearch) var dismissSearch
     @Environment(\.isSearching) var isSearching
 
+    /// A `ViewModel` that performs network request to get
+    /// user's followers and manages adding current user to bookmarks.
+    ///
+    /// This `ViewModel` is also responsible for the logic of showing error alerts, displaying ``GFEmptyStateView``,
+    /// showing loading progress cover view and managing followers filtered with `searchBar`.
     @EnvironmentObject var viewModel: FollowersListView.ViewModel
 
-    let columns = Array(repeating: GridItem(.flexible()), count: 3)
+    // MARK: - Struct variables
 
+    /// A 3-column `LazyVGrid` layout.
+    private let columns = Array(repeating: GridItem(.flexible()), count: 3)
+
+    // MARK: -
     var body: some View {
 
         ScrollView(.vertical) {
@@ -38,7 +55,6 @@ struct FollowersGridScrollView: View {
             }
             .onChange(of: viewModel.selectedFollower) { _ in
                 if isSearching {
-                    print(">>> dismissing search...")
                     dismissSearch()
                 }
             }
@@ -50,6 +66,7 @@ struct FollowersGridScrollView: View {
     }
 }
 
+// MARK: -
 struct FollowersGridScrollView_Previews: PreviewProvider {
     static var previews: some View {
         FollowersGridScrollView()
