@@ -54,7 +54,7 @@ struct GFAlertView: View {
 
                 Spacer()
 
-                GFButton(color: .pink, label: "OK", action: dismissAlert)
+                GFButton(color: .pink, labelTitle: "OK", action: dismissAlert)
                     .padding(.bottom)
                     .padding(.horizontal, 20)
             }

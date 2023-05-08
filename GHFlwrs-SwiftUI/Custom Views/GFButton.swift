@@ -10,31 +10,38 @@ import SwiftUI
 /// A styled Github Followers button.
 ///
 /// Default modifiers include:
-/// + *white* title color
 /// + *.headline* text font
 /// + frame max width set to *.infinity*
-/// + corner radius of 10
+/// + buttonStyle of *.borderedProminent*
 /// + internal vertical padding
 struct GFButton: View {
 
     var color: Color
-    var label: String
+    var labelTitle: String
+    var systemImageName: String?
     var action: () -> Void
 
     var body: some View {
         Button(action: self.action) {
-            HStack {
-                Spacer()
-                Text(label)
-                Spacer()
-            }
+            buttonLabel
         }
-        .foregroundColor(.white)
-        .font(.headline)
+        .buttonStyle(.borderedProminent)
         .frame(maxWidth: .infinity)
-        .padding(.vertical)
-        .background(color)
-        .cornerRadius(10)
-        .contentShape(RoundedRectangle(cornerRadius: 10))
+        .tint(color)
+    }
+
+    @ViewBuilder private var buttonLabel: some View {
+        HStack {
+            Spacer()
+            if let imageName = systemImageName {
+                Label(labelTitle, systemImage: imageName)
+                    .font(.headline)
+            } else {
+                Text(labelTitle)
+                    .font(.headline)
+            }
+            Spacer()
+        }
+        .padding(.vertical, 8)
     }
 }

@@ -65,9 +65,19 @@ struct GFItemCardView: View {
     private var cardActionButton: GFButton {
         switch cardType {
         case .repo:
-            return GFButton(color: .indigo, label: "GitHub Profile", action: userInfoViewModel.showUserWebProfile)
+            return GFButton(
+                color: .indigo,
+                labelTitle: "GitHub Profile",
+                systemImageName: "person",
+                action: userInfoViewModel.showUserWebProfile
+            )
         case .follower:
-            return GFButton(color: .green, label: "Get Followers", action: userInfoViewModel.showUserFollowers)
+            return GFButton(
+                color: .green,
+                labelTitle: "Get Followers",
+                systemImageName: "person.3",
+                action: userInfoViewModel.showUserFollowers
+            )
         }
     }
 }

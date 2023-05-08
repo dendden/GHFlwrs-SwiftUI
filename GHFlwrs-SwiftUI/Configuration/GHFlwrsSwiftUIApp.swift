@@ -11,10 +11,6 @@ import SwiftUI
 struct GHFlwrsSwiftUIApp: App {
 
     init() {
-        let appearance = UITabBarAppearance()
-        appearance.configureWithDefaultBackground()
-        UITabBar.appearance().standardAppearance = appearance
-        UITabBar.appearance().scrollEdgeAppearance = appearance
 
         PersistenceManager.retrieveBookmarks { result in
             switch result {
