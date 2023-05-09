@@ -49,7 +49,7 @@ extension BookmarksView {
         func getBookmarks() {
             PersistenceManager.retrieveBookmarks { [weak self] result in
 
-                guard let self = self else { return }
+                guard let self else { return }
 
                 switch result {
                 case .success(let bookmarks):
@@ -88,9 +88,9 @@ extension BookmarksView {
 
             PersistenceManager.updateWith(bookmark, actionType: .remove) { [weak self] error in
 
-                guard let self = self else { return }
+                guard let self else { return }
 
-                if let error = error {
+                if let error {
                     DispatchQueue.main.async {
                         self.bookmarksErrorMessage = error.rawValue
                         self.showBookmarksRetrieveError = true

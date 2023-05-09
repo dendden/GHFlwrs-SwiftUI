@@ -32,7 +32,7 @@ struct GFAvatarImageView: View {
             .aspectRatio(1, contentMode: .fit)
             .onAppear {
                 NetworkManager.shared.downloadImage(from: avatarUrl) { image in
-                    if let image = image {
+                    if let image {
                         avatarImage = image
                     }
                 }

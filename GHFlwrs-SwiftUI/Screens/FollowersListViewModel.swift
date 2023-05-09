@@ -117,7 +117,7 @@ extension FollowersListView {
 
             NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
 
-                guard let self = self else { return }
+                guard let self else { return }
 
                 DispatchQueue.main.async {
                     self.showLoadingProgress = false
@@ -230,7 +230,7 @@ extension FollowersListView {
 
             NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
 
-                guard let self = self else { return }
+                guard let self else { return }
 
                 DispatchQueue.main.async {
                     self.showLoadingProgress = false
@@ -254,8 +254,8 @@ extension FollowersListView {
         private func bookmarkUser(_ user: User) {
             let bookmark = Follower(login: user.login, avatarUrl: user.avatarUrl)
             PersistenceManager.updateWith(bookmark, actionType: .add) { [weak self] error in
-                guard let self = self else { return }
-                if let error = error {
+                guard let self else { return }
+                if let error {
                     DispatchQueue.main.async {
                         self.bookmarkErrorMessage = error.rawValue
                         self.activeBookmarkAlert = .bookmarkError

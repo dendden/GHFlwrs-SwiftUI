@@ -4,6 +4,9 @@
 //
 //  Created by Денис Трясунов on 26.04.2023.
 //
+//  Great article on SwiftUI button customization:
+//  https://www.kodeco.com/34851726-swiftui-button-tutorial-customization
+//
 
 import SwiftUI
 
@@ -18,6 +21,7 @@ struct GFButton: View {
 
     var color: Color
     var labelTitle: String
+    /// An optional `SFSymbol` to use for button's `Label` image.
     var systemImageName: String?
     var action: () -> Void
 
@@ -27,6 +31,7 @@ struct GFButton: View {
         }
         .buttonStyle(.borderedProminent)
         .frame(maxWidth: .infinity)
+        .controlSize(.large)
         .tint(color)
     }
 
@@ -42,6 +47,5 @@ struct GFButton: View {
             }
             Spacer()
         }
-        .padding(.vertical, 8)
     }
 }

@@ -65,7 +65,7 @@ extension UserInfoView {
         /// - Parameter username: The username of user whose info must be fetched.
         func getUserInfo(for username: String) {
             NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-                guard let self = self else { return }
+                guard let self else { return }
                 switch result {
                 case .success(let user):
                     DispatchQueue.main.async {
